@@ -1,7 +1,7 @@
 var fireBase = fireBase || firebase;
 var hasInit = false;
 var config = {
-  //firebase API Key
+  //firebase API Key  "Xiaodong Huang"
     apiKey: "AIzaSyDbDPVmyCGWItkyTIsDSS9hvYvUrSIPG8Y",
     authDomain: "senior-project-weather-a-2f0e4.firebaseapp.com",
     projectId: "senior-project-weather-a-2f0e4",
