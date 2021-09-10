@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senior Project Weather App</title>
-    <!-- firebase library -->
+    <!-- firebase library "Xiaodong Huang"-->
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -13,10 +13,36 @@
 <body>
     <div id="main_container" style="display:none;">
         <h1>click me</h1>
-        <button onclick="mainApp.logout();">logout</button>
+    <!-- Display user's location "Xiaodong Huang"-->
+    </div>
+    <p id="loca"></p>
+    <br>
+    <!-- ask for user's input "Xiaodong Huang"-->
+    <div class="search">
+    <input type="text" class="cityLoc" placeholder="Search City">
+    <button>Search</button>
+    </div>
 
-</div>
-    <script src="script.js"></script>
+    
+    <!-- Display weather information based on user's input "Xiaodong Huang"-->
+    <div class="weather info">
+        <h2 class="cityName"></h2>
+        <div class="temp"></div>
+        <div class="pics">
+          <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+          <div class="description"></div>
+        </div>
+        <div class="humidity"></div>
+        <div class="wind"></div>
+        <div class="visibility"></div>
+        <div class="pressure"></div>
+        <div class="sunrise"></div>
+        <div class="sunset"></div>
+      </div>
+
+    <!-- logout "Xiaodong Huang"--> 
+    <button onclick="mainApp.logout();">logout</button>
+    <script src="script.js" defer></script>
     <script src="fireBase.js"></script>
     <script src="main.js"></script>
 </body>
