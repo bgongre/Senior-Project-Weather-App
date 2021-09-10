@@ -1,12 +1,3 @@
-let text = document.querySelector("h1");
-
-text.onclick = function updateText() {
-    text.textContent = "Great job setting up your Github!"
-    text.style = "Color: red";
-}
-
-
-
 //Get elementByID loca so we can add text to it "Xiaodong Huang".
 var x = document.getElementById("loca");
 //get user's location and display "Xiaodong Huang"
@@ -25,11 +16,6 @@ function getLocation() {
     getLocation();
   }
 
-
-
-
-
-
 //getting the value user search "Xiaodong Huang"
 function search() {
     weather.fetchWeather(document.getElementsByClassName("cityLoc")[0].value);
@@ -45,8 +31,6 @@ function search() {
             search();
       }
     });
-
-
 
 //Connect to the api, and get the data to json "Xiaodong Huang"
   let weather = {
