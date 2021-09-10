@@ -3,6 +3,7 @@ var mainApp = {};
 var mainContainer = document.getElementById("main_container");
 
     var logtout =  function(){
+      //logout function, once log out then go to login.html
         firebase.auth().signOut().then(function(){
             console.log('success');
             window.location.replace("login.html");

@@ -1,8 +1,9 @@
 // FirebaseUI config.
+//https://firebase.google.com/docs/auth/web/firebaseui
 var uiConfig = {
     signInSuccessUrl: 'index.html',
     signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
+      // no other login as of now
             //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             //firebase.auth.TwitterAuthProvider.PROVIDER_ID,

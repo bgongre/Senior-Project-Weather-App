@@ -1,6 +1,7 @@
 var fireBase = fireBase || firebase;
 var hasInit = false;
 var config = {
+  //firebase API Key
     apiKey: "AIzaSyDbDPVmyCGWItkyTIsDSS9hvYvUrSIPG8Y",
     authDomain: "senior-project-weather-a-2f0e4.firebaseapp.com",
     projectId: "senior-project-weather-a-2f0e4",
