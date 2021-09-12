@@ -18,16 +18,19 @@
 <body>
 
   <!-- navbar section "Brittani Gongre" -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <ul class="nav navbar-nav">
-        <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
-        <li class="navbar-text navbar-left">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand weather-icon">
           <img src="cloudy.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </p>
+        <div class="navbar-text navbar-left">
           <strong>Team 5 Weather App</strong>
-        </li>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
         <li>
-          <a class="navbar-link navbar-right" aria-current="page" href="#"><strong>Account Settings</strong></a>
+          <a href="#">Account Settings</a>
         </li>
       </ul>
     </div>
@@ -40,32 +43,38 @@
     <p id="loca"></p>
     <br>
     <!-- ask for user's input "Xiaodong Huang"-->
-    <div class="search">
-      <input type="text" class="cityLoc" placeholder="Search City">
-      <button>Search</button>
+    <div class="row justify-content-center search">
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" class="form-control cityLoc" placeholder="Enter city...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+          </span>
+        </div>
+      </div>
     </div>
 
 
-    <!-- Display weather information based on user's input "Xiaodong Huang"-->
-    <div class="container-fluid mb-4">
-      <div class="row text-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-        <div class="col mt-4">
-          <div class="weather-info card">
-            <h2 class="cityName"></h2>
-            <div class="temp"></div>
-            <div class="pics">
-              <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
-              <div class="description"></div>
+      <!-- Display weather information based on user's input "Xiaodong Huang"-->
+      <div class="container-fluid mb-4">
+        <div class="row text-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+          <div class="col mt-4">
+            <div class="weather-info card">
+              <h2 class="cityName"></h2>
+              <div class="temp"></div>
+              <div class="pics">
+                <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+                <div class="description"></div>
+              </div>
+              <div class="humidity"></div>
+              <div class="wind"></div>
+              <div class="visibility"></div>
+              <div class="pressure"></div>
+              <div class="sunrise"></div>
+              <div class="sunset"></div>
             </div>
-            <div class="humidity"></div>
-            <div class="wind"></div>
-            <div class="visibility"></div>
-            <div class="pressure"></div>
-            <div class="sunrise"></div>
-            <div class="sunset"></div>
           </div>
-        </div>
-        <!-- <div class="col mt-4">
+          <!-- <div class="col mt-4">
           <div class="weather-info card">
             <h2 class="cityName"></h2>
             <div class="temp"></div>
@@ -81,19 +90,19 @@
             <div class="sunset"></div>
           </div>
         </div> -->
+        </div>
+      </div>
+
+      <!-- logout "Xiaodong Huang"-->
+      <div class="logout-btn text-left">
+        <button class="btn btn-danger" onclick="mainApp.logout();">
+          logout
+        </button>
       </div>
     </div>
-
-    <!-- logout "Xiaodong Huang"-->
-    <div class="logout-btn text-left">
-      <button class="btn btn-danger" onclick="mainApp.logout();">
-        logout
-      </button>
-    </div>
-  </div>
-  <script src="script.js" defer></script>
-  <script src="fireBase.js"></script>
-  <script src="main.js"></script>
+    <script src="script.js" defer></script>
+    <script src="fireBase.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
