@@ -1,8 +1,12 @@
-
-
 //Get elementByID loca so we can add text to it "Xiaodong Huang".
 var x = document.getElementById("lat");
 var y = document.getElementById("long");
+
+// variables created for use with the Add and Remove button functionality. -Brittani Gongre-
+let weatherInformationContainer = document.getElementById("weather-information-container");
+let weatherInformationDiv = document.getElementById("weather-information");
+let addBtn = document.getElementById("add-btn");
+let removeBtn = document.getElementById("remove-btn");
 
 //get user's location and display "Xiaodong Huang"
 function getLocation() { 
@@ -24,14 +28,6 @@ function getLocation() {
     var long;
     getLocation()
   }
-
-
-
-
-
-
-
-
 
 
 //getting the value user search "Xiaodong Huang"
@@ -69,10 +65,6 @@ function search() {
         },
   };
 
-
-
-
-
     //api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid={API key}
     //Second function, this time it take user's lat and long and get weather
     //upon login user will get current location weather
@@ -93,13 +85,6 @@ function search() {
           .then((data) => displayWeather(data));
           },
     };
-  
-  
-
- 
-
-
-
 
 //once we have the data from api, get the data and put it in html  "Xiaodong Huang"
     function displayWeather(data) {
@@ -125,10 +110,35 @@ function search() {
         document.getElementsByClassName("sunset")[0].innerText ="sunset: " + timestr;
       }
 
+// function will make the Remove button visible once a new weather option is added
+// a new weather option will be copied from the original and appended to the end of the 
+// 'weather-information-container' div. Also, added the 'removeable-weather' id to identify
+// the copies. -Brittani Gongre-
+let createNewWeather = () => {
+  removeBtn.style.visibility = 'visible';
+  let addWeather = weatherInformationDiv.cloneNode(true);
+  weatherInformationContainer.appendChild(addWeather); 
+  addWeather.setAttribute("id", "removeable-weather");
+}
 
+// function checks to see if 'weather-information-container' and if it does it will remove them
+// one by one. If all the 'removable-weather' copies are gone, the 'weather-information-container' 
+// child node length will be 3, in which case the Remove button should be hidden because 
+// nothing is left to remove. It will leave one single weather search on the page. -Brittani Gongre-
+let removeWeather = () => {
+let removableWeatherInformationDiv = document.getElementById("removeable-weather");
+  if (weatherInformationContainer.hasChildNodes())
+  {
+    removableWeatherInformationDiv.parentNode.removeChild(removableWeatherInformationDiv);
+  }
+  
+  if (weatherInformationContainer.childNodes.length === 3) {
+    removeBtn.style.visibility = "hidden";
+  }
+}
 
-
-
-
+// event listeners for the Add and Remove buttons. -Brittani Gongre-
+addBtn.addEventListener("click", createNewWeather);
+removeBtn.addEventListener("click", removeWeather);
 
  
