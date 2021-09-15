@@ -7,6 +7,9 @@ let weatherInformationContainer = document.getElementById("weather-information-c
 let weatherInformationDiv = document.getElementById("weather-information");
 let addBtn = document.getElementById("add-btn");
 let removeBtn = document.getElementById("remove-btn");
+let num = 1;
+
+
 
 //get user's location and display "Xiaodong Huang"
 function getLocation() { 
@@ -115,30 +118,34 @@ function search() {
 // 'weather-information-container' div. Also, added the 'removeable-weather' id to identify
 // the copies. -Brittani Gongre-
 let createNewWeather = () => {
-  removeBtn.style.visibility = 'visible';
   let addWeather = weatherInformationDiv.cloneNode(true);
   weatherInformationContainer.appendChild(addWeather); 
   addWeather.setAttribute("id", "removeable-weather");
+  document.getElementsByClassName("cityName")[0].innerText = `${num += 1} Weather in ${name}`;
+
+  const removeBtn = document.createElement("button");
+  removeBtn.innerHTML = "Remove";
+  removeBtn.classList.add("btn", "btn-default");
+  removeBtn.style.marginTop = "30px";
+  removeBtn.style.paddingLeft = "20px";
+  removeBtn.style.paddingRight = "20px";
+  removeBtn.addEventListener("click", removeWeather);
+  addWeather.appendChild(removeBtn);
 }
 
 // function checks to see if 'weather-information-container' and if it does it will remove them
 // one by one. If all the 'removable-weather' copies are gone, the 'weather-information-container' 
-// child node length will be 3, in which case the Remove button should be hidden because 
-// nothing is left to remove. It will leave one single weather search on the page. -Brittani Gongre-
+// child node length will be 3. It will leave one single weather search on the page. -Brittani Gongre-
 let removeWeather = () => {
-let removableWeatherInformationDiv = document.getElementById("removeable-weather");
-  if (weatherInformationContainer.hasChildNodes())
+  let removableWeatherInformationDiv = document.getElementById("removeable-weather");
+  if (weatherInformationContainer.hasChildNodes() && weatherInformationContainer.childNodes.length > 3)
   {
     removableWeatherInformationDiv.parentNode.removeChild(removableWeatherInformationDiv);
-  }
-  
-  if (weatherInformationContainer.childNodes.length === 3) {
-    removeBtn.style.visibility = "hidden";
   }
 }
 
 // event listeners for the Add and Remove buttons. -Brittani Gongre-
 addBtn.addEventListener("click", createNewWeather);
-removeBtn.addEventListener("click", removeWeather);
+// removeBtn.addEventListener("click", removeWeather);
 
  

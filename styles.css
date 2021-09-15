@@ -12,13 +12,6 @@
     padding-right: 30px;
 }
 
-#remove-btn {
-    visibility: hidden;
-    margin-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 .logout-btn {
     margin-top: 10px;
 }
