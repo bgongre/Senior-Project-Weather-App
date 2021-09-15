@@ -1,8 +1,11 @@
+
+
 //Get elementByID loca so we can add text to it "Xiaodong Huang".
-var x = document.getElementById("loca");
+var x = document.getElementById("lat");
+var y = document.getElementById("long");
+
 //get user's location and display "Xiaodong Huang"
 function getLocation() { 
-    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
@@ -10,11 +13,26 @@ function getLocation() {
     }
   }
   function showPosition(position) {
-    x.innerHTML = "Your location is: " + position.coords.latitude  + "  ,   "+ position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    x.innerHTML = lat;
+    y.innerHTML = long;
+    Geoweather.fetchWeather(lat,long);
   }
   window.onload = function() {
-    getLocation();
+    var lat ;
+    var long;
+    getLocation()
   }
+
+
+
+
+
+
+
+
+
 
 //getting the value user search "Xiaodong Huang"
 function search() {
@@ -55,6 +73,32 @@ function search() {
 
 
 
+    //api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid={API key}
+    //Second function, this time it take user's lat and long and get weather
+    //upon login user will get current location weather
+    let Geoweather = {
+      apiKey: "a4ba445616b05d69a1302b0cad41b887",
+      //function take a city name, then fetch it from api "Xiaodong Huang"
+      fetchWeather: function (lat,long) { 
+        fetch("https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long + "&units=Imperial&appid=" +this.apiKey)
+        //once fetch data from api return it to json data "Xiaodong Huang"
+        .then((response) => {
+          if (!response.ok) {
+              alert("City name error");
+              throw new Error("City name error");
+            }
+            return response.json();
+          })
+          //once we have the data, get the data to displace function. "Xiaodong Huang"
+          .then((data) => displayWeather(data));
+          },
+    };
+  
+  
+
+ 
+
+
 
 
 //once we have the data from api, get the data and put it in html  "Xiaodong Huang"
@@ -83,6 +127,8 @@ function search() {
 
 
 
-  
-  
+
+
+
+
  
