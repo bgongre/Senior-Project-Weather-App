@@ -1,5 +1,5 @@
 // FirebaseUI config.
-// https://firebase.google.com/docs/auth/web/firebaseui
+//https://firebase.google.com/docs/auth/web/firebaseui
 var uiConfig = {
     signInSuccessUrl: 'index.html',
     signInOptions: [
