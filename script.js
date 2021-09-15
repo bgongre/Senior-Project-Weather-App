@@ -121,7 +121,6 @@ let createNewWeather = () => {
   let addWeather = weatherInformationDiv.cloneNode(true);
   weatherInformationContainer.appendChild(addWeather); 
   addWeather.setAttribute("id", "removeable-weather");
-  document.getElementsByClassName("cityName")[0].innerText = `${num += 1} Weather in ${name}`;
 
   const removeBtn = document.createElement("button");
   removeBtn.innerHTML = "Remove";
