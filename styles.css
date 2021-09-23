@@ -4,6 +4,7 @@
 
 #weather-information {
     margin-bottom: 40px;
+    left: 250px;
 }
 
 #add-btn {
@@ -15,3 +16,8 @@
 .logout-btn {
     margin-top: 10px;
 }
+
+
+
+ 
+

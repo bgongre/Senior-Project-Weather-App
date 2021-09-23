@@ -2,6 +2,7 @@
 var x = document.getElementById("lat");
 var y = document.getElementById("long");
 
+
 // variables created for use with the Add and Remove button functionality. -Brittani Gongre-
 let weatherInformationContainer = document.getElementById("weather-information-container");
 let weatherInformationDiv = document.getElementById("weather-information");
@@ -25,6 +26,8 @@ function getLocation() {
     x.innerHTML = lat;
     y.innerHTML = long;
     Geoweather.fetchWeather(lat,long);
+    
+    
   }
   window.onload = function() {
     var lat ;
@@ -90,6 +93,9 @@ function search() {
     };
 
 //once we have the data from api, get the data and put it in html  "Xiaodong Huang"
+    let flat;
+    let flon;
+    let cname;
     function displayWeather(data) {
         let { name } = data;
         let { icon, description } = data.weather[0];
@@ -98,7 +104,10 @@ function search() {
         let { visibility } = data;
         let { sunrise } = data.sys;
         let { sunset } = data.sys;
+        let { lon} = data.coord;
+        let { lat } = data.coord;
         document.getElementsByClassName("cityName")[0].innerText = "Weather in " + name;
+        document.getElementsByClassName("forecity")[0].innerText = "Forecast in " + name;
         document.getElementsByClassName("icon")[0].src ="https://openweathermap.org/img/wn/" + icon + ".png";
         document.getElementsByClassName("description")[0].innerText = description;
         document.getElementsByClassName("temp")[0].innerText = temp + "°F";
@@ -111,7 +120,19 @@ function search() {
         var date = new Date(sunset * 1000);
         var timestr = date.toLocaleTimeString();
         document.getElementsByClassName("sunset")[0].innerText ="sunset: " + timestr;
+        //set values for forecast function "Xiaodong Huang"
+        flat = lat;
+        flon = lon;
+        cname = name;
       }
+
+
+
+
+
+
+
+
 
 // function will make the Remove button visible once a new weather option is added
 // a new weather option will be copied from the original and appended to the end of the 
@@ -148,3 +169,114 @@ addBtn.addEventListener("click", createNewWeather);
 // removeBtn.addEventListener("click", removeWeather);
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function to call the forecast function "Xiaodong Huang"
+function foreDays(flat,flon, num) {
+  Foreatherweek.fetchWeather(flat,flon, num);
+}
+
+
+
+//onclick to the button get the value user input, then call forecast function to display "Xiaodong Huang"
+function threedis (){
+  foreDays(flat,flon,document.getElementById("threeDay").value);
+}
+
+function sevendis (){
+  foreDays(flat,flon,document.getElementById("sevenDay").value);
+}
+//clear the forecast 
+function removefore(){
+  var removeForecast = document.querySelector(".forecast-day");
+  while(removeForecast.children.length> 0) {
+  removeForecast.removeChild(removeForecast.lastChild);
+  }
+
+
+}
+ //clear the forecast  
+function clearfore(){
+
+  var removeForecast = document.querySelector(".forecast-day");
+  while(removeForecast.children.length> 0) {
+  removeForecast.removeChild(removeForecast.lastChild);
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//forecast object
+let Foreatherweek = {
+  apiKey: "a4ba445616b05d69a1302b0cad41b887",
+  //function take lat and lon, then fetch it from api "Xiaodong Huang"
+  fetchWeather: function (flat,flong,num) { 
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+flat+"&lon="+flong + "&exclude=current,hourly,minutely,alerts&cnt=3&units=Imperial&appid=" +this.apiKey)
+    //once fetch data from api return it to json data "Xiaodong Huang"
+    .then((response) => {
+      if (!response.ok) {
+          alert("City name error");
+          throw new Error("City name error");
+        }
+        return response.json();
+      })
+      //once we have the data, get the data to displace function. "Xiaodong Huang"
+      .then((data) => foreDisplay(data, num));
+      },
+};
+
+//where to put the forecast "Xiaodong Huang"
+var forecast = document.getElementsByClassName("forecast-day");
+// function to display the forecast "Xiaodong Huang"
+function foreDisplay(data, num){
+  //Check if there are forecasat already, if there is remove it. "Xiaodong Huang"
+  removefore();
+  var fday = "";
+  //display number of days depends on the user's selection "Xiaodong Huang"
+  data.daily.forEach((value, index) => {
+    if (index > 0 && index <= num) {
+      //conver the day, from unix to readalbe 
+      var dayname = new Date(value.dt * 1000).toLocaleDateString("en", {
+        weekday: "long",
+      });
+      var icon = value.weather[0].icon;
+      var disCon = "https://openweathermap.org/img/wn/" + icon + ".png";
+      var temp = value.temp.day.toFixed(0);
+      fday = `<div id="days">
+        <p>${dayname}</p>
+        <img class="${icon}" src= ${disCon}>
+        <br>
+        <div class="forecast-day--temp">${temp}<sup>°F</sup></div>
+        <br>
+      </div>`;
+      forecast[0].insertAdjacentHTML('beforeend', fday);
+    }
+  });
+}
+
+
+

@@ -82,6 +82,7 @@
           <div class="col mt-4">
             <div class="weather-info card">
               <h2 class="cityName"></h2>
+               
               <div class="temp"></div>
               <div class="pics">
                 <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
@@ -97,7 +98,23 @@
           </div>
         </div>
       </div>
-
+              <!-- For forecast "Xiaodong Huang"-->
+              <div id="forecast-container" class="container-fluid mb-4"></div>
+              <div id="forecast-information" class="row text-center row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+              <div class="forecast" >
+                <h2 class="forecity"></h2>
+                <input type="radio" id="threeDay" onclick="threedis()" name="forecast" value=3>
+                <label for="threeDay">Three Day forecast</label><br>
+                <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=7>
+                <label for="sevenDay">Seven Day forecast</label><br>
+                <input type="radio" id="clear" onclick="clearfore()" name="forecast" value=0>
+                <label for="clear">Clear Forecast</label><br>
+              <!-- For forecast "Xiaodong Huang"-->
+              </div>
+              <div class="forecast-day">
+              </div>
+            </div>
+          </div>
       
     </div>
     <script src="script.js" ></script>
