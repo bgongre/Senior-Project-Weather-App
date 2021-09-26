@@ -25,13 +25,15 @@ function showPosition(position) {
   x.innerHTML = lat;
   y.innerHTML = long;
   Geoweather.fetchWeather(lat, long);
-}
 
+
+}
 window.onload = function () {
   var lat;
   var long;
   getLocation()
 }
+
 
 //getting the value user search "Xiaodong Huang"
 function search() {
@@ -104,8 +106,6 @@ function displayWeather(data) {
 
   let {
     temp,
-    temp_max,
-    temp_min,
     humidity, 
     feels_like
   } = data.main;
@@ -121,8 +121,6 @@ function displayWeather(data) {
   document.getElementsByClassName("icon")[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
   document.getElementsByClassName("description")[0].innerText = description;
   document.getElementsByClassName("temp")[0].innerText = Math.round(temp) + "°F";
-  document.getElementsByClassName("temp-high")[0].innerText = "High today: " + Math.round(temp_max) + "°F";
-  document.getElementsByClassName("temp-low")[0].innerText = "Low today: " + Math.round(temp_min) + "°F";
   document.getElementsByClassName("feels-like")[0].innerText = "Feels like: " + Math.round(feels_like) + "°F";
   document.getElementsByClassName("humidity")[0].innerText = "Humidity: " + humidity + "%";
   document.getElementsByClassName("wind")[0].innerText = "Wind speed: " + speed + " km/h";
@@ -241,7 +239,6 @@ let Foreatherweek = {
 
 // function to display the forecast "Xiaodong Huang"
 function foreDisplay(data, num) {
-  console.log(data)
   //Check if there are forecasat already, if there is remove it. "Xiaodong Huang"
   removefore();
   var fday = "";
@@ -254,13 +251,7 @@ function foreDisplay(data, num) {
       });
       var icon = value.weather[0].icon;
       var disCon = "https://openweathermap.org/img/wn/" + icon + ".png";
-
-      let {
-        day,
-        max,
-        min
-      } = value.temp;
-
+      var temp = value.temp.day.toFixed(0);
       let description = value.weather[0].description;
       let humidity = value.humidity;
       let wind = value.wind_speed;
@@ -273,9 +264,7 @@ function foreDisplay(data, num) {
           <img src=${disCon} alt="weather icon" class="${icon} icon card-img-top" />
         </div>
         <div class="card-body">
-          <div class="temp card-title">${Math.round(day)}°F</div>
-          <div class="temp-high card-text">High: ${Math.round(max)}</div>
-          <div class="temp-low card-text">Low: ${Math.round(min)}</div>
+          <div class="temp card-title">${temp}°F</div>
           <div class="humidity card-text">Humidity: ${humidity}%</div>
           <div class="wind card-text">Wind speed: ${wind} km/h</div>
           <div class="sunrise card-text">Sunrise ${sunriseTime(value.sunrise)}</div>
