@@ -2,6 +2,11 @@
     padding-right: 0px;
 }
 
+.bg-light {
+    margin-bottom: 50px;
+    box-shadow: 0px 5px 1px grey;
+}
+
 #weather-information {
     margin-bottom: 40px;
     left: 250px;
