@@ -277,4 +277,5 @@ function foreDisplay(data, num) {
       cardRow.insertAdjacentHTML('beforeend', fday);
     }
   });
+  test
 }
