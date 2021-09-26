@@ -200,7 +200,7 @@ function sevendis() {
   foreDays(flat, flon, document.getElementById("sevenDay").value);
 }
 
-// clear the forecast **edited to leave the original single day forecast**
+// clear the forecast **edited to leave the original single day forecast
 function removefore() {
   var removeForecast = document.getElementById("card-row");
   while (removeForecast.children.length > 1) {
@@ -208,7 +208,7 @@ function removefore() {
   }
 }
 
-//clear the forecast **edited to leave the original single day forecast**
+//clear the forecast **edited to leave the original single day forecast
 function clearfore() {
   var removeForecast = document.getElementById("card-row");
   while (removeForecast.children.length > 1) {
