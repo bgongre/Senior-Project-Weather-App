@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Account Settings</title>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="settingsCss.css">
+</head>
+
+
+<!-- Background/Text styles Abhay Kamath-->
+<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+
+
+
+</style>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand weather-icon">
+          <img src="cloudy.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </p>
+        <div class="navbar-text navbar-left">
+          <strong>Team 5 Weather App</strong>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="index.html">Back to homepage</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+ <!--Create a basic account settings page where users can update their personal information Abhay Kamath -->
+  <center>
+
+  <h1> User Account Settings </h1>
+
+  <form>
+  <h2> First Name </h2>
+  <input type="text" id="FirstName" name="FirstName">
+
+  <h2> Last Name </h2>
+  <input type="text" id="LastName" name="LastName">
+
+  <div id="wrapper">
+  <h2>  Gender </h2>
+
+  <input type="radio" name="yes_no" checked>Male</input><br>
+
+  <input type="radio" name="yes_no">Female</input><br>
+  </div>
+
+  <h2> Email </h2>
+  <input type="text" id="Email" name="Email">
+
+  <h2> Password </h2>
+  <input type="text" id="Password" name="Password">
+
+  <h2> Date of birth </h2>
+  <input type="text" id="Date of Birth" name="Date of Birth">
+
+  <div id="wrapper">
+  <h2>Do you want to upgrade to premium?</h2>
+
+  <input type="radio" name="yes_no" checked>Yes</input><br>
+
+  <input type="radio" name="yes_no">No</input><br>
+  </div>
+
+  <button class="button" onclick="update()">UPDATE</button>
+
+
+</form>
+
+</center>
+
+<script src="fireBase.js"></script>
+<script src="settings.js"></script>
+
+
+</body>
+
+</html>
