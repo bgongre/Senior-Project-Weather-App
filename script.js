@@ -191,8 +191,6 @@ function foreDays(flat, flon, num) {
   Foreatherweek.fetchWeather(flat, flon, num);
 }
 
-
-
 //onclick to the button get the value user input, then call forecast function to display "Xiaodong Huang"
 function threedis() {
   foreDays(flat, flon, document.getElementById("threeDay").value);
@@ -202,7 +200,7 @@ function sevendis() {
   foreDays(flat, flon, document.getElementById("sevenDay").value);
 }
 
-//clear the forecast 
+// // clear the forecast 
 function removefore() {
   var removeForecast = document.querySelector(".forecast-day");
   while (removeForecast.children.length > 0) {
@@ -210,9 +208,8 @@ function removefore() {
   }
 }
 
-//clear the forecast  
+// //clear the forecast  
 function clearfore() {
-
   var removeForecast = document.querySelector(".forecast-day");
   while (removeForecast.children.length > 0) {
     removeForecast.removeChild(removeForecast.lastChild);
@@ -279,7 +276,7 @@ function foreDisplay(data, num) {
           <div class="sunset card-text">Sunset ${sunsetTime(value.sunset)}</div>
         </div>
       </div>`;
-      firstCard.insertAdjacentHTML('beforeend', fday);
+      forecast[0].insertAdjacentHTML('beforeend', fday);
     }
   });
 }
