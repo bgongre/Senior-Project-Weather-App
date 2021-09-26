@@ -9,9 +9,6 @@ let weatherInformationDiv = document.getElementById("weather-information");
 let addBtn = document.getElementById("add-btn");
 let removeBtn = document.getElementById("remove-btn");
 let cardRow = document.getElementById("card-row");
-let num = 1;
-
-
 
 //get user's location and display "Xiaodong Huang"
 function getLocation() {
@@ -277,5 +274,4 @@ function foreDisplay(data, num) {
       cardRow.insertAdjacentHTML('beforeend', fday);
     }
   });
-  test
 }
