@@ -8,10 +8,7 @@ let weatherInformationContainer = document.getElementById("weather-information-c
 let weatherInformationDiv = document.getElementById("weather-information");
 let addBtn = document.getElementById("add-btn");
 let removeBtn = document.getElementById("remove-btn");
-let firstCard = document.getElementById("first-card");
-let num = 1;
-
-
+let cardRow = document.getElementById("card-row");
 
 //get user's location and display "Xiaodong Huang"
 function getLocation() {
@@ -200,18 +197,18 @@ function sevendis() {
   foreDays(flat, flon, document.getElementById("sevenDay").value);
 }
 
-// // clear the forecast 
+// clear the forecast **edited to leave the original single day forecast**
 function removefore() {
-  var removeForecast = document.querySelector(".forecast-day");
-  while (removeForecast.children.length > 0) {
+  var removeForecast = document.getElementById("card-row");
+  while (removeForecast.children.length > 1) {
     removeForecast.removeChild(removeForecast.lastChild);
   }
 }
 
-// //clear the forecast  
+//clear the forecast **edited to leave the original single day forecast**
 function clearfore() {
-  var removeForecast = document.querySelector(".forecast-day");
-  while (removeForecast.children.length > 0) {
+  var removeForecast = document.getElementById("card-row");
+  while (removeForecast.children.length > 1) {
     removeForecast.removeChild(removeForecast.lastChild);
   }
 }
@@ -240,8 +237,6 @@ let Foreatherweek = {
   },
 };
 
-//where to put the forecast "Xiaodong Huang"
-var forecast = document.getElementsByClassName("forecast-day");
 // function to display the forecast "Xiaodong Huang"
 function foreDisplay(data, num) {
   //Check if there are forecasat already, if there is remove it. "Xiaodong Huang"
@@ -276,7 +271,7 @@ function foreDisplay(data, num) {
           <div class="sunset card-text">Sunset ${sunsetTime(value.sunset)}</div>
         </div>
       </div>`;
-      forecast[0].insertAdjacentHTML('beforeend', fday);
+      cardRow.insertAdjacentHTML('beforeend', fday);
     }
   });
 }
