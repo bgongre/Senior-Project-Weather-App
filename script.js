@@ -219,6 +219,11 @@ function clearfore() {
   }
 }
 
+//Once settings have been updated give users a notication "Abhay Kamath"
+function update(){
+   alert("Your settings have been updated.");
+}
+
 //forecast object
 let Foreatherweek = {
   apiKey: "a4ba445616b05d69a1302b0cad41b887",
