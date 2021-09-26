@@ -17,7 +17,35 @@
     margin-top: 10px;
 }
 
+.card {
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 18rem;
+    box-shadow: 5px 5px 5px grey;
+}
 
+.card-subtitle {
+    margin-top: 5px;
+}
 
- 
+.weekday-name,
+.current {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
 
+.icon {
+    margin-top: 5px;
+    max-width: 30%;
+    height: auto;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: larger;
+}
+
+#days {
+    margin-bottom: 50px;
+}
