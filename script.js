@@ -279,4 +279,5 @@ function foreDisplay(data, num) {
       forecast[0].insertAdjacentHTML('beforeend', fday);
     }
   });
+  test
 }
