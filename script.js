@@ -241,7 +241,6 @@ let Foreatherweek = {
 
 // function to display the forecast "Xiaodong Huang"
 function foreDisplay(data, num) {
-  console.log(data)
   //Check if there are forecasat already, if there is remove it. "Xiaodong Huang"
   removefore();
   var fday = "";
