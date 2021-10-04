@@ -43,11 +43,13 @@ function search() {
 //add eventlistener, onclick to the button get the value user input. "Xiaodong Huang"
 document.querySelector(".search button").addEventListener("click", function () {
   search();
+  removefore();
 });
 //when user press enter call the search function.  "Xiaodong Huang"
 document.querySelector(".cityLoc").addEventListener("keyup", function (event) {
   if (event.key == "Enter") {
     search();
+    removefore();
   }
 });
 
