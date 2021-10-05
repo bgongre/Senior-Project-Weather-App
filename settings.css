@@ -10,3 +10,12 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+div.double {
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-color: rgb(255, 0, 0);
+  background: #7ed386;
+
+}
