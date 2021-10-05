@@ -1,5 +1,6 @@
+
 .button {
-  background-color: green;
+  background-color: red;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -15,7 +16,7 @@ div.double {
   border-right-style: solid;
   border-bottom-style: solid;
   border-left-style: solid;
-  border-color: rgb(255, 0, 0);
+  border-color: black;
   background: #7ed386;
 
 }
