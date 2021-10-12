@@ -2,6 +2,18 @@
 var x = document.getElementById("lat");
 var y = document.getElementById("long");
 
+// forecast display elements
+let cityName = document.getElementsByClassName("cityName");
+let forecastCity = document.getElementsByClassName("forecity");
+let weatherIcon = document.getElementsByClassName("icon");
+let weatherDescription = document.getElementsByClassName("description");
+let weatherTemp = document.getElementsByClassName("temp");
+let weatherFeelsLike = document.getElementsByClassName("feels-like");
+let weatherHumidity = document.getElementsByClassName("humidity");
+let windSpeed = document.getElementsByClassName("wind");
+let weatherVisibility = document.getElementsByClassName("visibility");
+let citySunrise = document.getElementsByClassName("sunrise");
+let citySunset = document.getElementsByClassName("sunset");
 
 // variables created for use with the Add and Remove button functionality. -Brittani Gongre-
 let weatherInformationContainer = document.getElementById("weather-information-container");
@@ -28,12 +40,12 @@ function showPosition(position) {
 
 
 }
+
 window.onload = function () {
   var lat;
   var long;
   getLocation()
 }
-
 
 //getting the value user search "Xiaodong Huang"
 function search() {
@@ -45,6 +57,7 @@ document.querySelector(".search button").addEventListener("click", function () {
   search();
   removefore();
 });
+
 //when user press enter call the search function.  "Xiaodong Huang"
 document.querySelector(".cityLoc").addEventListener("keyup", function (event) {
   if (event.key == "Enter") {
@@ -118,17 +131,17 @@ function displayWeather(data) {
   let {sunset} = data.sys;
   let {lon} = data.coord;
   let {lat} = data.coord;
-  document.getElementsByClassName("cityName")[0].innerText = "Weather in " + name;
-  document.getElementsByClassName("forecity")[0].innerText = "Forecast in " + name;
-  document.getElementsByClassName("icon")[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
-  document.getElementsByClassName("description")[0].innerText = description;
-  document.getElementsByClassName("temp")[0].innerText = Math.round(temp) + "°F";
-  document.getElementsByClassName("feels-like")[0].innerText = "Feels like: " + Math.round(feels_like) + "°F";
-  document.getElementsByClassName("humidity")[0].innerText = "Humidity: " + humidity + "%";
-  document.getElementsByClassName("wind")[0].innerText = "Wind speed: " + speed + " km/h";
-  document.getElementsByClassName("visibility")[0].innerText = "visibility: " + visibility;
-  document.getElementsByClassName("sunrise")[0].innerText = "sunrise: " + sunriseTime(sunrise);
-  document.getElementsByClassName("sunset")[0].innerText = "sunset: " + sunsetTime(sunset);
+  cityName[0].innerText = "Weather in " + name;
+  forecastCity[0].innerText = "Forecast in " + name;
+  weatherIcon[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
+  weatherDescription[0].innerText = description;
+  weatherTemp[0].innerText = Math.round(temp) + "°F";
+  weatherFeelsLike[0].innerText = "Feels like: " + Math.round(feels_like) + "°F";
+  weatherHumidity[0].innerText = "Humidity: " + humidity + "%";
+  windSpeed[0].innerText = "Wind speed: " + speed + " km/h";
+  weatherVisibility[0].innerText = "visibility: " + visibility;
+  citySunrise[0].innerText = "sunrise: " + sunriseTime(sunrise);
+  citySunset[0].innerText = "sunset: " + sunsetTime(sunset);
   //set values for forecast function "Xiaodong Huang"
   flat = lat;
   flon = lon;

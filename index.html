@@ -60,17 +60,6 @@
     <p id="lat"></p>
     <p id="long"></p>
     <br>
-    <!-- ask for user's input "Xiaodong Huang"-->
-    <div class="row justify-content-center search">
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="form-control cityLoc" placeholder="Enter city..." autocomplete="off">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Search</button>
-          </span>
-        </div>
-      </div>
-    </div>
 
     <button id="add-btn" type="button" class="btn btn-default">
       Add
@@ -81,6 +70,20 @@
       <button class="btn btn-danger" onclick="mainApp.logout();">
         logout
       </button>
+    </div>
+
+    <!-- ask for user's input "Xiaodong Huang"-->
+    <div id="search-field-container">
+      <div class="row justify-content-center search">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input type="text" class="form-control cityLoc" placeholder="Enter city..." autocomplete="off">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Search</button>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Display weather information based on user's input "Xiaodong Huang"-->
@@ -119,12 +122,13 @@
     <div id="forecast-information" class="text-center">
       <div class="forecast">
         <h2 class="forecity"></h2>
+        <input type="radio" id="clear" onclick="clearfore()" name="forecast" value=0 checked />
+          <label for="clear">Single Day Forecast</label><br>
         <input type="radio" id="threeDay" onclick="threedis()" name="forecast" value=3>
-          <label for="threeDay">Three Day forecast</label><br>
-          <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=7>
-          <label for="sevenDay">Seven Day forecast</label><br>
-        <input type="radio" id="clear" onclick="clearfore()" name="forecast" value=0>
-          <label for="clear">Clear Forecast</label><br>
+          <label for="threeDay">Three Day Forecast</label><br>
+         <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=7>
+          <label for="sevenDay">Seven Day Forecast</label><br>
+
         <!-- For forecast "Xiaodong Huang"-->
       </div>
     </div>
