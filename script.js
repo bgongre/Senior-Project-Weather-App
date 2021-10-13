@@ -16,6 +16,11 @@ let citySunrise = document.getElementsByClassName("sunrise");
 let citySunset = document.getElementsByClassName("sunset");
 
 // variables created for use with the Add and Remove button functionality. -Brittani Gongre-
+let searchFieldNum = 1;
+let attributeName = "cityLoc";
+let citySearchInput = document.getElementsByClassName("city-search-input");
+let cityTextInput = document.querySelector(".form-control");
+let searchFunctionContainer = document.getElementById("search-field-container");
 let weatherInformationContainer = document.getElementById("weather-information-container");
 let weatherInformationDiv = document.getElementById("weather-information");
 let addBtn = document.getElementById("add-btn");
@@ -37,8 +42,6 @@ function showPosition(position) {
   x.innerHTML = lat;
   y.innerHTML = long;
   Geoweather.fetchWeather(lat, long);
-
-
 }
 
 window.onload = function () {
@@ -48,20 +51,24 @@ window.onload = function () {
 }
 
 //getting the value user search "Xiaodong Huang"
+// added 'attributeName' to help make this function dynamic.
+// 'attributeName' is updated when a new weather location is added and allows for a new location to be searched -Brittani Gongre-
 function search() {
-  weather.fetchWeather(document.getElementsByClassName("cityLoc")[0].value);
+  weather.fetchWeather(document.getElementsByClassName(attributeName)[0].value);
 }
 
 //add eventlistener, onclick to the button get the value user input. "Xiaodong Huang"
-document.querySelector(".search button").addEventListener("click", function () {
-  search();
+// same as above, edited this function to be dynamic for when new weather information is added -Brittani Gongre-
+document.querySelector(".search").addEventListener("click", function () {
+  search(attributeName);
   removefore();
 });
 
 //when user press enter call the search function.  "Xiaodong Huang"
-document.querySelector(".cityLoc").addEventListener("keyup", function (event) {
+// same as above, edited this function to be dynamic for when new weather information is added -Brittani Gongre-
+document.querySelector(`.${attributeName}`).addEventListener("keyup", function (event) {
   if (event.key == "Enter") {
-    search();
+    search(attributeName);
     removefore();
   }
 });
@@ -107,11 +114,13 @@ let Geoweather = {
 };
 
 //once we have the data from api, get the data and put it in html  "Xiaodong Huang"
+// refactored below to have all DOM selectors appear at top of the page for easy readability and reuse -Brittani Gongre-
 let flat;
 let flon;
 let cname;
 
 function displayWeather(data) {
+  console.log(data);
   let {name} = data;
 
   let {
@@ -162,25 +171,72 @@ let sunsetTime = (sunsetData) => {
   return timestr;
 }
 
+// copy the current search field and append it to the weather-information-container div when the
+// method is called. -Brittani Gongre-
+let createNewSearchField = () => {
+  let addSearchField = searchFunctionContainer.cloneNode(true);
+  weatherInformationContainer.appendChild(addSearchField);
+  addSearchField.setAttribute("id", "removeable-search-field");
+  cityTextInput.setAttribute("class", `form-control cityLoc${searchFieldNum}`);
+  cityTextInput.classList.remove("cityLoc");
+  attributeName = `cityLoc${searchFieldNum}`;
+  searchFieldNum++;
+}
 
 // function will make the Remove button visible once a new weather option is added
 // a new weather option will be copied from the original and appended to the end of the 
 // 'weather-information-container' div. Also, added the 'removeable-weather' id to identify
 // the copies. -Brittani Gongre-
+
+// WIP **check here for remove button issue**
 let createNewWeather = () => {
   let addWeather = weatherInformationDiv.cloneNode(true);
   weatherInformationContainer.appendChild(addWeather);
   addWeather.setAttribute("id", "removeable-weather");
+  clearWeatherAttributes();
+  removeSearchField();
 
-  const removeBtn = document.createElement("button");
+  let removeBtn = document.createElement("button");
   removeBtn.innerHTML = "Remove";
   removeBtn.classList.add("btn", "btn-default");
+  removeBtn.setAttribute("id", "removeBtn");
   removeBtn.style.marginTop = "30px";
   removeBtn.style.paddingLeft = "20px";
   removeBtn.style.paddingRight = "20px";
-  removeBtn.addEventListener("click", removeWeather);
   addWeather.appendChild(removeBtn);
+  removeBtn.addEventListener("click", removeWeather);
 }
+
+// removes previous weather attributes from the card -Brittani Gongre-
+let clearWeatherAttributes = () => {
+  cityName[0].innerText = " ";
+  weatherIcon[0].innerText = " ";
+  weatherDescription[0].innerText = " ";
+  weatherTemp[0].innerText = " ";
+  weatherFeelsLike[0].innerText = "Feels like: ";
+  weatherHumidity[0].innerText = "Humidity: ";
+  windSpeed[0].innerText = "Wind speed: ";
+  weatherVisibility[0].innerText = "visibility: ";
+  citySunrise[0].innerText = "sunrise: ";
+  citySunset[0].innerText = "sunset: ";
+}
+
+// WIP **break out the remove button**
+// let createRemoveButton = () => {
+//   let removeBtn = document.createElement("button");
+//   removeBtn.innerHTML = "Remove";
+//   removeBtn.classList.add("btn", "btn-default");
+//   removeBtn.setAttribute("id", "removeBtn");
+//   removeBtn.style.marginTop = "30px";
+//   removeBtn.style.paddingLeft = "20px";
+//   removeBtn.style.paddingRight = "20px";
+//   addWeather.appendChild(createRemoveButton());
+//   removeBtn.addEventListener("click", removeWeather);
+// }
+
+// let appendRemoveButton = (parentElementId, childElementId) => {
+//   document.getElementById(parentElementId).appendChild(childElementId);
+// }
 
 // function checks to see if 'weather-information-container' and if it does it will remove them
 // one by one. If all the 'removable-weather' copies are gone, the 'weather-information-container' 
@@ -192,11 +248,18 @@ let removeWeather = () => {
   }
 }
 
-// event listeners for the Add and Remove buttons. -Brittani Gongre-
-addBtn.addEventListener("click", createNewWeather);
+// removes the previous search field when a new card is added. -Brittani Gongre-
+let removeSearchField = () => {
+  let removeableSearchField = document.querySelectorAll("#removeable-search-field");
+  removeableSearchField.forEach(element => element.innerHTML = "");
+}
+
+// event listener for the add button that creates a new search field and a new weather card. -Brittani Gongre-
+addBtn.addEventListener("click", () => {
+  createNewSearchField();
+  createNewWeather();
+});
 // removeBtn.addEventListener("click", removeWeather);
-
-
 
 //function to call the forecast function "Xiaodong Huang"
 function foreDays(flat, flon, num) {
