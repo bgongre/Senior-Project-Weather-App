@@ -12,6 +12,10 @@
     left: 250px;
 }
 
+.temp-min {
+    margin-bottom: 15px;
+}
+
 #add-btn {
     margin-top: 30px;
     padding-left: 30px;

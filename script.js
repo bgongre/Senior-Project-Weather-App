@@ -9,6 +9,7 @@ let weatherIcon = document.getElementsByClassName("icon");
 let weatherDescription = document.getElementsByClassName("description");
 let weatherTemp = document.getElementsByClassName("temp");
 let weatherFeelsLike = document.getElementsByClassName("feels-like");
+let weatherTempMin = document.getElementsByClassName("temp-min");
 let weatherHumidity = document.getElementsByClassName("humidity");
 let windSpeed = document.getElementsByClassName("wind");
 let weatherVisibility = document.getElementsByClassName("visibility");
@@ -130,6 +131,7 @@ function displayWeather(data) {
 
   let {
     temp,
+    temp_min,
     humidity, 
     feels_like
   } = data.main;
@@ -144,7 +146,8 @@ function displayWeather(data) {
   forecastCity[0].innerText = "Forecast in " + name;
   weatherIcon[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
   weatherDescription[0].innerText = description;
-  weatherTemp[0].innerText = Math.round(temp) + "°F";
+  weatherTemp[0].innerText = "High: " + Math.round(temp) + "°F";
+  weatherTempMin[0].innerText = "Low: " + Math.round(temp_min) + "°F";
   weatherFeelsLike[0].innerText = "Feels like: " + Math.round(feels_like) + "°F";
   weatherHumidity[0].innerText = "Humidity: " + humidity + "%";
   windSpeed[0].innerText = "Wind speed: " + speed + " km/h";
@@ -315,7 +318,6 @@ let Foreatherweek = {
 function foreDisplay(data, num) {
   //Check if there are forecasat already, if there is remove it. "Xiaodong Huang"
   removefore();
-  var fday = "";
   //display number of days depends on the user's selection "Xiaodong Huang"
   data.daily.forEach((value, index) => {
     if (index > 0 && index <= num) {
@@ -326,6 +328,7 @@ function foreDisplay(data, num) {
       var icon = value.weather[0].icon;
       var disCon = "https://openweathermap.org/img/wn/" + icon + ".png";
       var temp = value.temp.day.toFixed(0);
+      let minTemp = value.temp.min.toFixed(0);
       let description = value.weather[0].description;
       let humidity = value.humidity;
       let wind = value.wind_speed;
@@ -338,7 +341,8 @@ function foreDisplay(data, num) {
           <img src=${disCon} alt="weather icon" class="${icon} icon card-img-top" />
         </div>
         <div class="card-body">
-          <div class="temp card-title">${temp}°F</div>
+          <h5 class="temp">High: ${temp}°F</h5>
+          <h5 class="temp-min">Low: ${minTemp}°F</h5>
           <div class="humidity card-text">Humidity: ${humidity}%</div>
           <div class="wind card-text">Wind speed: ${wind} km/h</div>
           <div class="sunrise card-text">Sunrise ${sunriseTime(value.sunrise)}</div>
