@@ -19,6 +19,7 @@ let citySunset = document.getElementsByClassName("sunset");
 // variables created for use with the Add and Remove button functionality. -Brittani Gongre-
 let searchFieldNum = 1;
 let attributeName = "cityLoc";
+// let removeBtn = document.getElementById("remove-btn");
 let citySearchInput = document.getElementsByClassName("city-search-input");
 let cityTextInput = document.querySelector(".form-control");
 let searchFunctionContainer = document.getElementById("search-field-container");
@@ -27,6 +28,9 @@ let weatherInformationDiv = document.getElementById("weather-information");
 let addBtn = document.getElementById("add-btn");
 let removeBtn = document.getElementById("remove-btn");
 let cardRow = document.getElementById("card-row");
+let singleDayForecastRadioBtn = document.getElementById("clear");
+
+let savedForecastLocations = {};
 
 //get user's location and display "Xiaodong Huang"
 function getLocation() {
@@ -121,7 +125,6 @@ let flon;
 let cname;
 
 function displayWeather(data) {
-  console.log(data);
   let {name} = data;
 
   let {
@@ -142,7 +145,7 @@ function displayWeather(data) {
   let {sunset} = data.sys;
   let {lon} = data.coord;
   let {lat} = data.coord;
-  cityName[0].innerText = "Weather in " + name;
+  cityName[0].innerText = "Forecast for " + name;
   forecastCity[0].innerText = "Forecast in " + name;
   weatherIcon[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
   weatherDescription[0].innerText = description;
@@ -158,9 +161,11 @@ function displayWeather(data) {
   flat = lat;
   flon = lon;
   cname = name;
+  // Holds the city values so that they can be removed later -Brittani Gongre-
+  savedForecastLocations[name] = name;
 }
 
-// broke these out of the above code block to make it reusable later on when creating new cards
+// broke sunriseTime and sunsetTime out of the above code block to make it reusable later on when creating new cards
 // this will make it so the code does not have to be repeated. -Brittani Gongre-
 let sunriseTime = (sunriseData) => {
   var date = new Date(sunriseData * 1000);
@@ -174,40 +179,13 @@ let sunsetTime = (sunsetData) => {
   return timestr;
 }
 
-// copy the current search field and append it to the weather-information-container div when the
-// method is called. -Brittani Gongre-
-let createNewSearchField = () => {
-  let addSearchField = searchFunctionContainer.cloneNode(true);
-  weatherInformationContainer.appendChild(addSearchField);
-  addSearchField.setAttribute("id", "removeable-search-field");
-  cityTextInput.setAttribute("class", `form-control cityLoc${searchFieldNum}`);
-  cityTextInput.classList.remove("cityLoc");
-  attributeName = `cityLoc${searchFieldNum}`;
-  searchFieldNum++;
-}
-
-// function will make the Remove button visible once a new weather option is added
-// a new weather option will be copied from the original and appended to the end of the 
-// 'weather-information-container' div. Also, added the 'removeable-weather' id to identify
-// the copies. -Brittani Gongre-
-
-// WIP **check here for remove button issue**
+// clones the current weather information card (div) and appends it to the dashboard.
+// Also, the attributes on the new card will be cleared. 
 let createNewWeather = () => {
   let addWeather = weatherInformationDiv.cloneNode(true);
-  weatherInformationContainer.appendChild(addWeather);
+  document.getElementById("additional-weather-container").appendChild(addWeather);
   addWeather.setAttribute("id", "removeable-weather");
   clearWeatherAttributes();
-  removeSearchField();
-
-  let removeBtn = document.createElement("button");
-  removeBtn.innerHTML = "Remove";
-  removeBtn.classList.add("btn", "btn-default");
-  removeBtn.setAttribute("id", "removeBtn");
-  removeBtn.style.marginTop = "30px";
-  removeBtn.style.paddingLeft = "20px";
-  removeBtn.style.paddingRight = "20px";
-  addWeather.appendChild(removeBtn);
-  removeBtn.addEventListener("click", removeWeather);
 }
 
 // removes previous weather attributes from the card -Brittani Gongre-
@@ -216,6 +194,7 @@ let clearWeatherAttributes = () => {
   weatherIcon[0].innerText = " ";
   weatherDescription[0].innerText = " ";
   weatherTemp[0].innerText = " ";
+  weatherTempMin[0].innerText = " ";
   weatherFeelsLike[0].innerText = "Feels like: ";
   weatherHumidity[0].innerText = "Humidity: ";
   windSpeed[0].innerText = "Wind speed: ";
@@ -224,22 +203,25 @@ let clearWeatherAttributes = () => {
   citySunset[0].innerText = "sunset: ";
 }
 
-// WIP **break out the remove button**
-// let createRemoveButton = () => {
-//   let removeBtn = document.createElement("button");
-//   removeBtn.innerHTML = "Remove";
-//   removeBtn.classList.add("btn", "btn-default");
-//   removeBtn.setAttribute("id", "removeBtn");
-//   removeBtn.style.marginTop = "30px";
-//   removeBtn.style.paddingLeft = "20px";
-//   removeBtn.style.paddingRight = "20px";
-//   addWeather.appendChild(createRemoveButton());
-//   removeBtn.addEventListener("click", removeWeather);
-// }
+// additional div that the remove button can be appended to -Brittani Gongre-
+let createAdditionalWeatherContainer = () => {
+  let addWeatherContainer = document.createElement("div");
+  addWeatherContainer.classList.add("text-center");
+  addWeatherContainer.setAttribute("id", "additional-weather-container");
+  weatherInformationContainer.appendChild(addWeatherContainer);
+}
 
-// let appendRemoveButton = (parentElementId, childElementId) => {
-//   document.getElementById(parentElementId).appendChild(childElementId);
-// }
+// dynamically create a remove button that can be added to additional weather cards
+let createRemoveButton = () => {
+  let removeBtn = document.createElement("button");
+  removeBtn.innerHTML = "Remove";
+  removeBtn.classList.add("btn", "btn-default");
+  removeBtn.setAttribute("id", "remove-btn");
+  removeBtn.style.marginTop = "30px";
+  removeBtn.style.paddingLeft = "30px";
+  removeBtn.style.paddingRight = "30px";
+  document.getElementById("additional-weather-container").appendChild(removeBtn);
+}
 
 // function checks to see if 'weather-information-container' and if it does it will remove them
 // one by one. If all the 'removable-weather' copies are gone, the 'weather-information-container' 
@@ -251,18 +233,14 @@ let removeWeather = () => {
   }
 }
 
-// removes the previous search field when a new card is added. -Brittani Gongre-
-let removeSearchField = () => {
-  let removeableSearchField = document.querySelectorAll("#removeable-search-field");
-  removeableSearchField.forEach(element => element.innerHTML = "");
-}
-
-// event listener for the add button that creates a new search field and a new weather card. -Brittani Gongre-
+// event listener for the add button that creates a new weather container div for the new weather card
+// creates the new weather card
+// and creates the remove button for the card. -Brittani Gongre-
 addBtn.addEventListener("click", () => {
-  createNewSearchField();
+  createAdditionalWeatherContainer();
   createNewWeather();
+  createRemoveButton();
 });
-// removeBtn.addEventListener("click", removeWeather);
 
 //function to call the forecast function "Xiaodong Huang"
 function foreDays(flat, flon, num) {
@@ -293,7 +271,6 @@ function clearfore() {
     removeForecast.removeChild(removeForecast.lastChild);
   }
 }
-
 
 //forecast object
 let Foreatherweek = {
@@ -334,7 +311,7 @@ function foreDisplay(data, num) {
       let wind = value.wind_speed;
       // let visibility = value. **can't find this in the json**
       let fday = `<div id="days" class="col">
-      <div class="card">
+      <div class="card mx-auto">
         <div class="weekday-name">${dayname}</div>
         <div class="description card-subtitle">${description}</div>
         <div class="pics">
