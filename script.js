@@ -349,3 +349,51 @@ function foreDisplay(data, num) {
     }
   });
 }
+
+
+
+
+
+  
+  tileNEX = new google.maps.ImageMapType({
+            getTileUrl: function(tile, zoom) {
+                return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+            },
+            tileSize: new google.maps.Size(256, 256),
+            opacity:0.60,
+            name : 'NEXRAD',
+            isPng: true
+        });
+        map.overlayMapTypes.setAt("1",tileNEX);
+
+        goes = new google.maps.ImageMapType({
+            getTileUrl: function(tile, zoom) {
+                return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes-east-vis-1km-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+            },
+            tileSize: new google.maps.Size(256, 256),
+            opacity:0.60,
+            name : 'GOES East Vis',
+            isPng: true
+        });
+        
+
+     
+        
+  //Making radar move
+  if(map.overlayMapTypes.length == 0){
+        tileNEX = new google.maps.ImageMapType({
+          getTileUrl: function(tile, zoom) {
+            debugger;
+              return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-" + timestamps[i] + "/" + zoom + "/" + tile.x + "/" + tile.y +".png"; 
+          },
+          tileSize: new google.maps.Size(256, 256),
+          opacity:0.60,
+          name : 'NEXRAD',
+          isPng: true
+        });
+        map.overlayMapTypes.push(null);
+        map.overlayMapTypes.setAt("0", tileNEX);
+      } else{
+        map.overlayMapTypes.clear();
+      }
+      
