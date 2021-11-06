@@ -65,10 +65,6 @@
       Add Weather To List
     </button>
 
-    <!-- <button id="remove-btn" type="button" class="btn btn-danger">
-      Remove
-    </button> -->
-
     <!-- logout "Xiaodong Huang"-->
     <div class="logout-btn text-left">
       <button id="logout-btn" class="btn btn-danger" onclick="mainApp.logout();">
@@ -89,6 +85,24 @@
           </div>
         </div>
       </div>
+      <!-- For forecast "Xiaodong Huang"-->
+      <div id="forecast-container" class="container mb-4">
+      <div id="forecast-information" class="text-center">
+        <div class="forecast">
+          <button id="clear" class="btn btn-default mt-4 mr-2" type="button" onclick="clearfore()" name="forecast" value=0 checked>
+            Single Day Forecast
+          </button>
+          <button id="threeDay" class="btn btn-default mt-4 mr-2" type="button" onclick="threedis()" name="forecast" value=2>
+            Three Day Forecast
+          </button>
+          <button id="sevenDay" class="btn btn-default mt-4" type="button" onclick="sevendis()" name="forecast" value=6>
+            Seven Day Forecast
+          </button>
+  
+          <!-- For forecast "Xiaodong Huang"-->
+        </div>
+      </div>
+    </div>
 
     <!-- Display weather information based on user's input "Xiaodong Huang"-->
     <div id="weather-information-container" class="container-fluid mb-4">
@@ -123,7 +137,7 @@
       </div>
     </div>
     <!-- For forecast "Xiaodong Huang"-->
-    <div id="forecast-container" class="container mb-4"></div>
+    <!-- <div id="forecast-container" class="container mb-4"></div>
     <div id="forecast-information" class="text-center">
       <div class="forecast">
         <h2 class="forecity"></h2>
@@ -132,7 +146,7 @@
         <input type="radio" id="threeDay" onclick="threedis()" name="forecast" value=2>
           <label for="threeDay">Three Day Forecast</label><br>
          <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=6>
-          <label for="sevenDay">Seven Day Forecast</label><br>
+          <label for="sevenDay">Seven Day Forecast</label><br> -->
 
         <!-- For forecast "Xiaodong Huang"-->
       </div>
