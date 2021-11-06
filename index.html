@@ -53,26 +53,17 @@
   </nav>
 
   <!-- for radar Map "Xiaodong Huang"-->
-  <div style="width: 60%; height: 450px; margin-top: 10px;">
+  <div class="map-container mt-4 mb-4">
     <div id="map"></div>
   </div>
 
-  <div class="container-fluid">
-    <div id="main_container container" style="display:none;">
-      <!-- Display user's location "Xiaodong Huang"-->
-    </div>
-    <h3>Your GeoLocation </h3>
-    <p id="lat"></p>
-    <p id="long"></p>
-    <br>
-
-    <button id="add-btn" type="button" class="btn btn-default">
+    <button id="add-btn" type="button" class="btn btn-default mb-4 ml-4 pl-4 pr-4">
       Add Weather To List
     </button>
 
     <!-- logout "Xiaodong Huang"-->
     <div class="logout-btn text-left">
-      <button id="logout-btn" class="btn btn-danger" onclick="mainApp.logout();">
+      <button id="logout-btn" class="btn btn-danger ml-4 pl-4 pr-4" onclick="mainApp.logout();">
         Logout
       </button>
     </div>

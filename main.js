@@ -14,7 +14,6 @@ var init = function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           //User is signed in. then it will stay sign in  "Xiaodong Huang"
-          console.log("stay");
           mainContainer.style.display = "";
         } else {
           // No user is signed in. can't see the index page  "Xiaodong Huang"
