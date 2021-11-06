@@ -347,17 +347,6 @@ function foreDisplay(data, num) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 var map;
 var i = 0;
 var radaranim;
