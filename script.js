@@ -4,7 +4,6 @@ var y = document.getElementById("long");
 
 // forecast display elements
 let cityName = document.getElementsByClassName("cityName");
-let forecastCity = document.getElementsByClassName("forecity");
 let weatherIcon = document.getElementsByClassName("icon");
 let weatherDescription = document.getElementsByClassName("description");
 let weatherTemp = document.getElementsByClassName("temp");
@@ -18,8 +17,8 @@ let citySunset = document.getElementsByClassName("sunset");
 
 // variables created for use with the Add and Remove button functionality. -Brittani Gongre-
 let searchFieldNum = 1;
+let removeBtnNum = 1;
 let attributeName = "cityLoc";
-// let removeBtn = document.getElementById("remove-btn");
 let citySearchInput = document.getElementsByClassName("city-search-input");
 let cityTextInput = document.querySelector(".form-control");
 let searchFunctionContainer = document.getElementById("search-field-container");
@@ -30,6 +29,7 @@ let removeBtn = document.getElementById("remove-btn");
 let cardRow = document.getElementById("card-row");
 let singleDayForecastRadioBtn = document.getElementById("clear");
 
+// object that holds key value pairs of the searched locations. -Brittani Gongre-
 let savedForecastLocations = {};
 
 //get user's location and display "Xiaodong Huang"
@@ -146,7 +146,6 @@ function displayWeather(data) {
   let {lon} = data.coord;
   let {lat} = data.coord;
   cityName[0].innerText = "Forecast for " + name;
-  forecastCity[0].innerText = "Forecast in " + name;
   weatherIcon[0].src = "https://openweathermap.org/img/wn/" + icon + ".png";
   weatherDescription[0].innerText = description;
   weatherTemp[0].innerText = "High: " + Math.round(temp) + "°F";
@@ -215,22 +214,36 @@ let createAdditionalWeatherContainer = () => {
 let createRemoveButton = () => {
   let removeBtn = document.createElement("button");
   removeBtn.innerHTML = "Remove";
-  removeBtn.classList.add("btn", "btn-default");
+  removeBtn.classList.add("btn", "btn-default", "remove-btn" + searchFieldNum);
   removeBtn.setAttribute("id", "remove-btn");
   removeBtn.style.marginTop = "30px";
   removeBtn.style.paddingLeft = "30px";
   removeBtn.style.paddingRight = "30px";
   document.getElementById("additional-weather-container").appendChild(removeBtn);
+  searchFieldNum++;
 }
+
+let createEventListenerForRemoveButtons = () => {
+  let removeBtn = document.querySelector(`.remove-btn1`);
+  removeBtn.addEventListener("Click", () => {
+    removeBtn.previousElementSibling = " ";
+    console.log("clicked");
+  });
 
 // function checks to see if 'weather-information-container' and if it does it will remove them
 // one by one. If all the 'removable-weather' copies are gone, the 'weather-information-container' 
 // child node length will be 3. It will leave one single weather search on the page. -Brittani Gongre-
-let removeWeather = () => {
-  let removableWeatherInformationDiv = document.getElementById("removeable-weather");
-  if (weatherInformationContainer.hasChildNodes() && weatherInformationContainer.childNodes.length > 3) {
-    removableWeatherInformationDiv.parentNode.removeChild(removableWeatherInformationDiv);
-  }
+// let removeWeather = (event) => {
+//   if(event.target === document.getElementById("remove-btn") && document.getElementById("remove-btn").hasClass("remove-btn")) {
+//     console.log("True: ", document.getElementById("remove-btn").getAttribute("class"));
+//   } else {
+//     console.log("False: ", document.getElementById("remove-btn").getAttribute("class"));
+//   }
+
+  // let removableWeatherInformationDiv = document.getElementById("removeable-weather");
+  // if (weatherInformationContainer.hasChildNodes() && weatherInformationContainer.childNodes.length > 3) {
+  //   removableWeatherInformationDiv.parentNode.removeChild(removableWeatherInformationDiv);
+  // }
 }
 
 // event listener for the add button that creates a new weather container div for the new weather card
@@ -240,6 +253,8 @@ addBtn.addEventListener("click", () => {
   createAdditionalWeatherContainer();
   createNewWeather();
   createRemoveButton();
+  createEventListenerForRemoveButtons();
+  clearfore();
 });
 
 //function to call the forecast function "Xiaodong Huang"
@@ -330,17 +345,6 @@ function foreDisplay(data, num) {
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 var map;
