@@ -37,22 +37,20 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    alert('Geolocation is not supported by this browser.');
   }
 }
 
 function showPosition(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
-  x.innerHTML = lat;
-  y.innerHTML = long;
   Geoweather.fetchWeather(lat, long);
+  console.log('This is your latitude: ', lat);
+  console.log('This is your longitude: ', long);
 }
 
 window.onload = function () {
-  var lat;
-  var long;
-  getLocation()
+  getLocation();
 }
 
 //getting the value user search "Xiaodong Huang"
