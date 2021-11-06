@@ -345,3 +345,75 @@ function foreDisplay(data, num) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var map;
+var i = 0;
+var radaranim;
+//Set up the innit time
+var timestamps = ['900913-m50m', '900913-m45m', '900913-m40m', '900913-m35m', '900913-m30m', '900913-m25m', 
+    '900913-m20m', '900913-m15m', '900913-m10m', '900913-m05m', '900913'];
+
+//first set up the google map for the radar "Xiaodong Huang" reference "https://developers.google.com/maps/documentation/javascript/overview"
+function initMap() {
+  //get user's location and set it to center "Xiaodong Huang"
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        centerUser = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(centerUser);
+
+    });
+  } 
+    // Create map
+    map = new google.maps.Map($('#map')[0], {
+      zoom: 9,
+    });
+}
+
+// Animate the Weather Radar, each time is call increase the timesteamps i "Xiaodong Huang" reference "http://mesonet.agron.iastate.edu/ogc/?fbclid=IwAR2oWMf9JWquzs9hRzRNY-9U7HN_z5GXcCszBsKXtKjtm-8H3GMIXOJJ1gQ"
+function startAnimation(){
+    tileNEX = new google.maps.ImageMapType({
+      getTileUrl: function(tile, zoom) {
+          return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-" + timestamps[i] + "/" + zoom + "/" + tile.x + "/" + tile.y +".png"; 
+      },
+      tileSize: new google.maps.Size(256, 256),
+      opacity:0.60,
+      name : 'NEXRAD',
+      isPng: true
+    });
+    map.overlayMapTypes.setAt("0", tileNEX);
+    i++;
+    if (i > 10 ){
+      i = 0;
+    }
+}
+radaranim = setInterval(startAnimation, 500); //call the function "Xiaodong Huang"  
+  //create empty overlay entery, if 0 set, if not 0 clear the tile "Xiaodong Huang" reference "http://mesonet.agron.iastate.edu/ogc/?fbclid=IwAR2oWMf9JWquzs9hRzRNY-9U7HN_z5GXcCszBsKXtKjtm-8H3GMIXOJJ1gQ"
+  if(map.overlayMapTypes.length == 0){
+        tileNEX = new google.maps.ImageMapType({
+          getTileUrl: function(tile, zoom) {
+            debugger;
+              return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-" + timestamps[i] + "/" + zoom + "/" + tile.x + "/" + tile.y +".png"; 
+          },
+          tileSize: new google.maps.Size(256, 256),
+          opacity:0.60,
+          name : 'NEXRAD',
+          isPng: true
+        });
+        map.overlayMapTypes.push(null); // create empty overlay entry
+        map.overlayMapTypes.setAt("0", tileNEX);
+      } else{
+        map.overlayMapTypes.clear();
+      }
+    

@@ -52,6 +52,16 @@
     </div>
   </nav>
 
+
+
+  <!-- for radar Map "Xiaodong Huang"-->
+  <div style="width: 60%; height: 450px; margin-top: 10px;">
+    <div id="map"></div>
+  </div>
+
+
+
+
   <div class="container-fluid">
     <div id="main_container container" style="display:none;">
       <!-- Display user's location "Xiaodong Huang"-->
@@ -136,26 +146,18 @@
         </div>
       </div>
     </div>
-    <!-- For forecast "Xiaodong Huang"-->
-    <!-- <div id="forecast-container" class="container mb-4"></div>
-    <div id="forecast-information" class="text-center">
-      <div class="forecast">
-        <h2 class="forecity"></h2>
-        <input type="radio" id="clear" onclick="clearfore()" name="forecast" value=0 checked />
-          <label for="clear">Single Day Forecast</label><br>
-        <input type="radio" id="threeDay" onclick="threedis()" name="forecast" value=2>
-          <label for="threeDay">Three Day Forecast</label><br>
-         <input type="radio" id="sevenDay" onclick="sevendis()" name="forecast" value=6>
-          <label for="sevenDay">Seven Day Forecast</label><br> -->
-
-        <!-- For forecast "Xiaodong Huang"-->
-      </div>
-    </div>
 
   </div>
   <script src="script.js"></script>
   <script src="fireBase.js"></script>
   <script src="main.js"></script>
+  <!-- For radar map "Xiaodong Huang"-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5gw3iTYixVJ_WENH16I8oFfcbDsCijWg&callback=initMap">
+  </script>
+
+
 </body>
 
 </html>

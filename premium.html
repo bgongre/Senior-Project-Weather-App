@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="settings.css">
+<link rel="stylesheet" href="premium.css">
 </head>
 
 
@@ -45,7 +45,6 @@ p    {color: red;}
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="index.html">Back to homepage</a>
-          <a href="premium.html">Go Premium</a>
         </li>
       </ul>
     </div>
@@ -54,37 +53,32 @@ p    {color: red;}
  <!--Create a basic account settings page where users can update their personal information Abhay Kamath -->
   <center>
 
-  <h1> User Account Settings </h1>
+  <h1> Upgrade your forecast </h1>
+
+  <p color: black>  Premium users will be prompted to use their geo-location to bring up their local weather, but they can also enter in a zip code manually to pull up a weather forecast.
+       Additionally, they will also have the option to add or remove multiple weather forecasts from their homepage. </p>
+
+  <h2>
+    <center>
+      Monthly
+    $2.99/Month
+
+    <button class ="button">Subscribe now</button>
+    </center>
+  </h2>
+
+  <br>
+
+  <h2>
+    <center>
+      Annual
+    $35.88/Year
+
+    <button class ="button">Subscribe now</button>
+    </center>
+  </h2>
 
 
-  <form>
-      <div class="double">
-  <h2> First Name </h2>
-  <input type="text" id="FirstName" name="FirstName" placeholder="Enter first name">
-
-  <h2> Last Name </h2>
-  <input type="text" id="LastName" name="LastName" placeholder="Enter last name">
-
-  <div id="wrapper">
-  <h2>  Gender </h2>
-
-  <input type="radio" name="yes_no" checked>Male</input><br>
-
-  <input type="radio" name="yes_no">Female</input><br>
-  </div>
-
-
-  <h2> Password </h2>
-  <input type="password" id="Password" name="Password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required><br>
-
-  <h2> Date of birth </h2>
-  <input type="text" id="Date of Birth" name="Date of Birth" placeholder="Enter birthdate"><br>
-
-
-  <button class ="button" id="update" style>UPDATE</button>
-
-
-</div>
 </center>
 
 <script src="fireBase.js"></script>
