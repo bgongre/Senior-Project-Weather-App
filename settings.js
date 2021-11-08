@@ -1,5 +1,4 @@
-var fireBase = fireBase || firebase;
-var hasInit = false;
+
 var config = {
   //firebase API Key  "Xiaodong Huang"
     apiKey: "AIzaSyDbDPVmyCGWItkyTIsDSS9hvYvUrSIPG8Y",
@@ -14,22 +13,24 @@ if(!hasInit){
     hasInit = true;
 }
 
-function goPremium(){
-  
-}
-function Ready(){
-  var userFname = document.getElementById('FirstName').value;
-  var userLname = document.getElementById('LastName').value;
-  var userPass = document.getElementById('Password').value;
-  var userDoB = document.getElementById('Date of Birth').value;
+var database = firebase.database();
+
+function update(){
+  var fname = document.getElementById('FirstName').value;
+  var lname = document.getElementById('LastName').value;
+  var uname = document.getElementById('Username').value;
+  var pword = document.getElementById('Password').value;
+  var birth = document.getElementById('DateOfBirth').value;
+
+  database.ref('users/' +uname).update({
+    firstName: fname,
+    lastName: lname,
+    userName: uname,
+    password: pword,
+    dateOfBirth: birth
+  })
+
+  alert("Your changes have been updated");
 }
 
-document.getElementById("update").onclick = function(){
-  Ready();
-  firebase.database().ref('user/').update({
-    FirstName: userFname,
-    LastName: userLastName,
-    Pass: userPass,
-    DateOfBirth: userDoB
-  });
-}
+
