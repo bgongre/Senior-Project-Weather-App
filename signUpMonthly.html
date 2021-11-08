@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Account Settings</title>
+
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-database.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="settings.css">
+<script src="fireBase.js"></script>
+<script src="premium.js"></script>
+
+</head>
+
+
+<!-- Background/Text styles Abhay Kamath-->
+<style>
+
+body {background-color: powderblue;}
+h1 {
+  color: blue;
+  margin-top: 50px;
+}
+p    {color: red;}
+
+</style>
+
+
+
+<body>
+
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-brand weather-icon">
+          <img src="cloudy.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </p>
+        <div class="navbar-text navbar-left">
+          <strong>Team 5 Weather App</strong>
+        </div>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="index.html">Back to homepage</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+ <!--Create a basic account settings page where users can update their personal information Abhay Kamath -->
+  <center>
+    <h1> Billing </h1>
+<div class="double"
+
+<p> You have selected the monthly subscription($2.99 per month)</p>
+
+<h2>Billing Address</h2>
+<input type="text" id="billAddress" name="Billing address" placeholder="Enter billing address">
+
+<h2>Payment Information</h2>
+<input type="name" id="FirstName" name="FirstName" placeholder="Enter first name">
+<input type="name" id="LastName" name="LastName" placeholder="Enter last name">
+
+<br>
+
+ <input name="credit-number" id="CardNumber" class="cc-number" type="number" pattern="\d*"placeholder="Card Number">
+ <input type="date" id="CardDate" name="cardDate"placeholder="MM/YY">
+ <input name="CVV" id="CVV" class="CVV" type="number" pattern="\d*" placeholder="CVV">
+
+<br>
+
+ <input type="checkbox" id="userAgree" name="userAgree" value="userAgree">
+ <label for="userAgree"> I understand that I have read and agreed to the Terms of Use and the Privacy Policy</label><br>
+
+<button class ="button" id="completePayment" onclick="signUpMonthly()" >Complete Payment</button>
+
+</div>
+</center>
+
+</body>
+
+</html>
