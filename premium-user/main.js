@@ -5,8 +5,7 @@ var mainContainer = document.getElementById("main_container");
     var logtout =  function(){
       //logout function, once log out then go to login.html  "Xiaodong Huang"
         firebase.auth().signOut().then(function(){
-            console.log('success');
-            window.location.replace("login.html");
+            window.location.replace("../login-page/login.html");
         },function(){})
     }
 
@@ -18,8 +17,7 @@ var init = function(){
         } else {
           // No user is signed in. can't see the index page  "Xiaodong Huang"
           mainContainer.style.display = "none";
-          console.log("redirect");
-          window.location.replace("login.html");
+          window.location.replace("../login-page/login.html");
         }
       });
 }
