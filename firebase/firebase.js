@@ -4,6 +4,7 @@ var config = {
   //firebase API Key  "Xiaodong Huang"
     apiKey: "AIzaSyDbDPVmyCGWItkyTIsDSS9hvYvUrSIPG8Y",
     authDomain: "senior-project-weather-a-2f0e4.firebaseapp.com",
+    databaseURL: "https://senior-project-weather-a-2f0e4-default-rtdb.firebaseio.com/",
     projectId: "senior-project-weather-a-2f0e4",
     storageBucket: "senior-project-weather-a-2f0e4.appspot.com",
     messagingSenderId: "619155365766",
@@ -11,6 +12,6 @@ var config = {
   };
 if(!hasInit){
     firebase.initializeApp(config);
+    database = firebase.database();
     hasInit = true;
 }
-

@@ -1,3 +1,9 @@
+let fname = document.getElementById('FirstName');
+let lname = document.getElementById('LastName');
+let uname = document.getElementById('Username');
+let pword = document.getElementById('Password');
+let birth = document.getElementById('DateOfBirth');
+let updateBtn = document.getElementById('update');
 
 var config = {
   //firebase API Key  "Xiaodong Huang"
@@ -13,24 +19,42 @@ if(!hasInit){
     hasInit = true;
 }
 
-var database = firebase.database();
-
 function update(){
-  var fname = document.getElementById('FirstName').value;
-  var lname = document.getElementById('LastName').value;
-  var uname = document.getElementById('Username').value;
-  var pword = document.getElementById('Password').value;
-  var birth = document.getElementById('DateOfBirth').value;
+  writeNewPost(1, lemondrop, something.gif, something, whatever);
+  // userInfo.firstName = fname.value;
+  // userInfo.lastName = lname.value;
+  // userInfo.email = uname.value;
+  // userInfo.password = pword.value;
 
-  database.ref('users/' +uname).update({
-    firstName: fname,
-    lastName: lname,
-    userName: uname,
-    password: pword,
-    dateOfBirth: birth
-  })
-
-  alert("Your changes have been updated");
+  // database.ref('users/' +uname).update({
+  //   firstName: fname,
+  //   lastName: lname,
+  //   userName: uname,
+  //   password: pword,
+  //   dateOfBirth: birth
+  // });
 }
+  
+  function writeNewPost(uid, username, picture, title, body) {
+    // A post entry.
+    var postData = {
+      author: username,
+      uid: uid,
+      body: body,
+      title: title,
+      starCount: 0,
+      authorPic: picture
+    };
+  
+    // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+  
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/posts/' + newPostKey] = postData;
+    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  
+    return firebase.database().ref().update(updates);
+  }
 
-
+  updateBtn.addEventListener("click", update);
