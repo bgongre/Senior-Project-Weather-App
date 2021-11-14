@@ -1,7 +1,7 @@
 // FirebaseUI config.
 // https://firebase.google.com/docs/auth/web/firebaseui
 var uiConfig = {
-    signInSuccessUrl: '../premium-user/index.html',
+    signInSuccessUrl: '../free-user/index.html',
     signInOptions: [
       // no other login as of now
             //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -12,7 +12,7 @@ var uiConfig = {
             //firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
-    tosUrl: '../premium-user/index.html'
+    tosUrl: '../free-user/index.html'
   };
   
   // Initialize the FirebaseUI Widget using Firebase.
