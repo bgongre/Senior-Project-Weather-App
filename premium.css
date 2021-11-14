@@ -21,3 +21,8 @@ p {
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.bg-light {
+  margin-bottom: 50px;
+  box-shadow: 0px 5px 1px grey;
+}
