@@ -1,0 +1,18 @@
+{
+  "rules" : {
+    "users" : {
+       "$userId" : {
+         ".read" : "auth != null && auth.userId = $userId" ,
+         ".write": "auth != null && auth.userId = $userId" ,
+         ".validate" : "newData.hasChildren(['firstName, 'lastName', 'gender', 'email', 'password', 'DOB'])",
+       "firstName" : {".validate": "newData.isString()"},
+       "lastName" : {".validate": "newData.isString()"},
+       "gender" : {".validate": "newData.isString()"},
+       "email" : {".validate": "newData.isString()"},
+       "password" : {".validate": "newData.isString()"},
+       "DOB" : {".validate": "newData.isNumber()"}
+
+      }
+    }
+  }
+}

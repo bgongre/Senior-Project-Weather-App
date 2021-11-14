@@ -1,0 +1,58 @@
+.weather-icon {
+    padding-right: 0px;
+}
+
+.bg-light {
+    margin-bottom: 50px;
+    box-shadow: 0px 5px 1px grey;
+}
+
+#weather-information {
+    margin-bottom: 40px;
+    left: 250px;
+}
+
+.temp-min {
+    margin-bottom: 15px;
+}
+
+#add-btn, #logout-btn {
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.card {
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 18rem;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.card-subtitle {
+    margin-top: 5px;
+}
+
+.weekday-name,
+.current {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.icon {
+    margin-top: 5px;
+    max-width: 30%;
+    height: auto;
+}
+
+#days {
+    margin-bottom: 50px;
+}
+
+
+#map {
+    height: 100%;
+    width: 96%;
+    margin: 0 auto;
+   }
