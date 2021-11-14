@@ -13,7 +13,7 @@
   <!-- Added stylesheet and bootstrap for easy styling "Brittani Gongre" -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <!-- Background/Text styles Abhay Kamath-->
@@ -53,26 +53,17 @@
   </nav>
 
   <!-- for radar Map "Xiaodong Huang"-->
-  <div style="width: 60%; height: 450px; margin-top: 10px;">
+  <div class="map-container mt-4 mb-4">
     <div id="map"></div>
   </div>
 
-  <div class="container-fluid">
-    <div id="main_container container" style="display:none;">
-      <!-- Display user's location "Xiaodong Huang"-->
-    </div>
-    <h3>Your GeoLocation </h3>
-    <p id="lat"></p>
-    <p id="long"></p>
-    <br>
-
-    <button id="add-btn" type="button" class="btn btn-default">
+    <button id="add-btn" type="button" class="btn btn-default mb-4 ml-4 pl-4 pr-4">
       Add Weather To List
     </button>
 
     <!-- logout "Xiaodong Huang"-->
     <div class="logout-btn text-left">
-      <button id="logout-btn" class="btn btn-danger" onclick="mainApp.logout();">
+      <button id="logout-btn" class="btn btn-danger ml-4 pl-4 pr-4" onclick="mainApp.logout();">
         Logout
       </button>
     </div>
@@ -143,9 +134,9 @@
     </div>
 
   </div>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
   <script src="../firebase/firebase.js"></script>
-  <script src="./main.js"></script>
+  <script src="main.js"></script>
   <!-- For radar map "Xiaodong Huang"-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script async defer
