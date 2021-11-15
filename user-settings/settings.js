@@ -15,6 +15,23 @@ if(!hasInit){
 
 var database = firebase.database();
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert('Geolocation is not supported by this browser.');
+  }
+}
+
+function showPosition(position) {
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+  Geoweather.fetchWeather(lat, long);
+  alert('This is your latitude: ', lat);
+  alert('This is your longitude: ', long);
+}
+
+
 function update(){
   var fname = document.getElementById('FirstName').value;
   var lname = document.getElementById('LastName').value;
