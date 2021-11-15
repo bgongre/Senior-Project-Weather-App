@@ -76,6 +76,17 @@ document.querySelector(`.${attributeName}`).addEventListener("keyup", function (
   }
 });
 
+//Save the search history to firebase. "Abhay Kamath"
+function saveSearchHistory(){
+  search(attributeName);
+  var searchHistory = document.getElementsByClassName(attributeName).value;
+
+  database.ref('search history' +searchHistory).set({
+    searchHistory : searchHistory
+  });
+
+}
+
 //Connect to the api, and get the data to json "Xiaodong Huang"
 let weather = {
   apiKey: "a4ba445616b05d69a1302b0cad41b887",
