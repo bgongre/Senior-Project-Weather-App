@@ -50,4 +50,4 @@ function update(){
   alert("Your changes have been updated");
 }
 
-
+  updateBtn.addEventListener("click", update());

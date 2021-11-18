@@ -11,6 +11,7 @@ var config = {
   };
 if(!hasInit){
     firebase.initializeApp(config);
-    hasInit = true;
+    database = firebase.database();
+    hasInit = true; 
 }
 
