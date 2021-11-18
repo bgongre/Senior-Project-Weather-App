@@ -8,7 +8,7 @@ var mainContainer = document.getElementById("main_container");
             window.location.replace("../login-page/login.html");
         },function(){})
     }
-
+var uid = null;
 var init = function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
