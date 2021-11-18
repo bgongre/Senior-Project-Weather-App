@@ -14,6 +14,7 @@ var init = function(){
         if (user) {
           //User is signed in. then it will stay sign in  "Xiaodong Huang"
           mainContainer.style.display = "";
+          var uid = user.uid;
         } else {
           // No user is signed in. can't see the index page  "Xiaodong Huang"
           mainContainer.style.display = "none";
