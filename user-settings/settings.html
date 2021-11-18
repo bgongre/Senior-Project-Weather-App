@@ -69,10 +69,10 @@ p    {color: red;}
       <div class="form-container">
        <div class="double">
           <h2> First Name </h2>
-          <input type="name" id="FirstName" name="FirstName" placeholder="Enter first name">
+          <input type="text" id="FirstName" name="FirstName" placeholder="Enter first name">
 
           <h2> Last Name </h2>
-          <input type="name" id="LastName" name="LastName" placeholder="Enter last name">
+          <input type="text" id="LastName" name="LastName" placeholder="Enter last name">
 
           <div id="wrapper">
           <h2>  Gender </h2>
@@ -83,7 +83,7 @@ p    {color: red;}
           </div>
 
           <h2> Username </h2>
-          <input type="name" id="Username" name="Username" placeholder="Enter username"> <br>
+          <input type="text" id="Username" name="Username" placeholder="Enter username"> <br>
 
           <!-- don't allow to change password at this time
           <h2> Password </h2>
@@ -109,9 +109,14 @@ p    {color: red;}
 <!--Add information to the DB -->
 
 <script type="module">
+  
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
   import { getDatabase, ref, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-auth.js";
+
+
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -135,9 +140,13 @@ p    {color: red;}
   var uname = document.getElementById('Username');
   var birth = document.getElementById('DateOfBirth');
 
-  
+  var uid ="";
+  const auth = getAuth();
+  var uid =auth.currentUser;
+ 
   document.getElementById("update").addEventListener("click",  function writeUserData() {
-    set(ref(db, "users/"), {
+    set(ref(db, "users/" + uid), {
+        uid: uid,
         fname: fname.value,
         lname: lname.value,
         uname: uname.value,
