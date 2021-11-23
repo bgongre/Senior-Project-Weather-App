@@ -6,11 +6,22 @@ h2 {
   margin: 20px;
 }
 
+div.double {
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-color: black;
+  background: #7ed386;
+
+}
+
 p {
   color: black;
 }
-.button{
-  background-color: blue;
+
+.button {
+  background-color: red;
   border: none;
   color: white;
   padding: 15px 32px;
