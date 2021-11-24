@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="settings.css">
+<link rel="stylesheet" href="premium.css">
 <script src="./firebase/firebase.js"></script>
 <script src="./premium.js"></script>
 
@@ -50,24 +50,24 @@ p    {color: red;}
     </div>
   </nav>
 
- <!--Create a basic account settings page where users can update their personal information Abhay Kamath -->
+  <!--Create a sign up page for users to join premium version Abhay Kamath -->
   <center>
     <h1> Billing </h1>
-<div class="double"
+<div class="double">
 
 <p> You have selected the monthly subscription($2.99 per month)</p>
 
-<h2>Billing Address</h2>
+<h3>Billing Address</h3>
 <input type="text" id="billAddress" name="Billing address" placeholder="Enter billing address">
 
-<h2>Payment Information</h2>
-<input type="name" id="FirstName" name="FirstName" placeholder="Enter first name">
-<input type="name" id="LastName" name="LastName" placeholder="Enter last name">
+<h3>Payment Information</h3>
+<input type="name" id="firstName" name="FirstName" placeholder="Enter first name">
+<input type="name" id="lastName" name="LastName" placeholder="Enter last name">
 
 <br>
 
- <input name="credit-number" id="CardNumber" class="cc-number" type="number" pattern="\d*"placeholder="Card Number">
- <input type="date" id="CardDate" name="cardDate"placeholder="MM/YY">
+ <input name="credit-number" id="cardNumber" class="cc-number" type="number" pattern="\d*"placeholder="Card Number">
+ <input type="date" id="cardDate" name="cardDate"placeholder="MM/YY">
  <input name="CVV" id="CVV" class="CVV" type="number" pattern="\d*" placeholder="CVV">
 
 <br>
@@ -75,10 +75,71 @@ p    {color: red;}
  <input type="checkbox" id="userAgree" name="userAgree" value="userAgree">
  <label for="userAgree"> I understand that I have read and agreed to the Terms of Use and the Privacy Policy</label><br>
 
-<button class ="button" id="completePayment" onclick="signUpMonthly()" >Complete Payment</button>
+<button class ="button" id="completePaymentMonthly">Complete Payment</button>
 
 </div>
 </center>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+  import { getDatabase, ref, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
+
+
+
+  //TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbDPVmyCGWItkyTIsDSS9hvYvUrSIPG8Y",
+      authDomain: "senior-project-weather-a-2f0e4.firebaseapp.com",
+  databaseURL: "https://senior-project-weather-a-2f0e4-default-rtdb.firebaseio.com/",
+      projectId: "senior-project-weather-a-2f0e4",
+      storageBucket: "senior-project-weather-a-2f0e4.appspot.com",
+      messagingSenderId: "619155365766",
+      appId: "1:619155365766:web:d1f57996d24196cc521607"
+    };
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+
+
+var billAddress = document.getElementById("billAddress");
+ var fname = document.getElementById("firstName");
+ var lname = document.getElementById("lastName");
+ var cardNum = document.getElementById("cardNumber");
+ var cardDate = document.getElementById("cardDate");
+ var cvv = document.getElementById("CVV");
+
+ let uid = firebase.auth().currentUser.uid
+ console.log(uid);
+
+ document.getElementById("completePaymentMonthly").addEventListener("click",  writeUserData);
+
+ function writeUserData(billingAdd, firstName, lastName, cardNumber, cardDate, cvv){
+     const db = getDatabase();
+     set(ref(db, "users/" + uid){
+       billingAdd: billAddress.value,
+       firstName: fname.value,
+       lastName: lname.value,
+       cardNamber: cardNum.value,
+       cardDate: cardDate.value,
+       cvv: cvv.value,
+     })
+
+     .then(()=>{
+        alert("Payment Complete")
+     })
+    .catch((error) =>{
+         alert("fail " + error)
+     });
+   }
+</script>
+
+
 
 </body>
 
