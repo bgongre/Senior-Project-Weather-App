@@ -2,10 +2,10 @@ var mainApp = {};
 (function(){
 var mainContainer = document.getElementById("main_container");
 
-    var logtout =  function(){
+    var logout =  function(){
       //logout function, once log out then go to login.html  "Xiaodong Huang"
         firebase.auth().signOut().then(function(){
-            window.location.replace("../login-page/login.html");
+            window.location.replace("../index.html");
         },function(){})
     }
 var uid = null;
@@ -18,12 +18,12 @@ var init = function(){
         } else {
           // No user is signed in. can't see the index page  "Xiaodong Huang"
           mainContainer.style.display = "none";
-          window.location.replace("../login-page/login.html");
+          window.location.replace("../index.html");
         }
       });
 }
     
 init();
 
-mainApp.logout = logtout;
+mainApp.logout = logout;
 })();
