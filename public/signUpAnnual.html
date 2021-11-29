@@ -75,19 +75,17 @@ p    {color: red;}
     <input type="checkbox" id="userAgree" name="userAgree" value="userAgree">
     <label for="userAgree"> I understand that I have read and agreed to the Terms of Use and the Privacy Policy</label><br>
 
-    <button class ="button" id="completePaymentAnnually">Complete Payment</button>
+    <button class ="button" id="completePaymentAnnually"> Complete Payment</button>
 
   </div>
 
 
 </center>
 <script type="module">
-  // Import the functions you need from the SDKs you need
+  //Import the functions you need from the SDKs you need
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
   import { getDatabase, ref, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
-
-
 
   //TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -105,24 +103,19 @@ p    {color: red;}
 
   // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase();
 
+ var billAddress = document.getElementById('billAddress');
+ var fname = document.getElementById('firstName');
+ var lname = document.getElementById('lastName');
+ var cardNum = document.getElementById('cardNumber');
+ var cardDate = document.getElementById('cardDate');
+ var cvv = document.getElementById('CVV');
 
-var billAddress = document.getElementById("billAddress");
- var fname = document.getElementById("firstName");
- var lname = document.getElementById("lastName");
- var cardNum = document.getElementById("cardNumber");
- var cardDate = document.getElementById("cardDate");
- var cvv = document.getElementById("CVV");
+  let uid = firebase.auth.uid
 
- let uid = firebase.auth().currentUser.uid
- console.log(uid);
-
-    document.getElementById("completePaymentAnnually").addEventListener("click",  writeUserData);
-
-    function writeUserData(billingAdd, firstName, lastName, cardNumber, cardDate, cvv){
+    document.getElementById("completePaymentAnnually").addEventListener("click", function writeUserData() {
         const db = getDatabase();
-        set(ref(db, "users/" + uid){
+        set(ref(db, "users/"), {
           billingAdd: billAddress.value,
           firstName: fname.value,
           lastName: lname.value,
@@ -131,16 +124,20 @@ var billAddress = document.getElementById("billAddress");
           cvv: cvv.value,
         })
 
+
+
         .then(()=>{
            alert("Payment Complete")
         })
        .catch((error) =>{
             alert("fail " + error)
         });
-      }
+      })
+    
 
 </script>
 
 </body>
 
 </html>
+
