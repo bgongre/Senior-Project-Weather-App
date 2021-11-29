@@ -83,10 +83,10 @@ p    {color: red;}
 <script type="module">
   // Import the functions you need from the SDKs you need
 
+  //Import the functions you need from the SDKs you need
+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
   import { getDatabase, ref, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js";
-
-
 
   //TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -104,39 +104,35 @@ p    {color: red;}
 
   // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase();
 
 
-var billAddress = document.getElementById("billAddress");
- var fname = document.getElementById("firstName");
- var lname = document.getElementById("lastName");
- var cardNum = document.getElementById("cardNumber");
- var cardDate = document.getElementById("cardDate");
- var cvv = document.getElementById("CVV");
+ var billAddress = document.getElementById('billAddress');
+ var fname = document.getElementById('firstName');
+ var lname = document.getElementById('lastName');
+ var cardNum = document.getElementById('cardNumber');
+ var cardDate = document.getElementById('cardDate');
+ var cvv = document.getElementById('CVV');
 
- let uid = firebase.auth().currentUser.uid
- console.log(uid);
+ let uid = firebase.auth.uid
 
- document.getElementById("completePaymentMonthly").addEventListener("click",  writeUserData);
+    document.getElementById("completePaymentMonthly").addEventListener("click", function writeUserData() {
+      const db = getDatabase();
+        set(ref(db, "users/"), {
+          billingAdd: billAddress.value,
+          firstName: fname.value,
+          lastName: lname.value,
+          cardNumber: cardNum.value,
+          cardDate: cardDate.value,
+          cvv: cvv.value,
+        })
 
- function writeUserData(billingAdd, firstName, lastName, cardNumber, cardDate, cvv){
-     const db = getDatabase();
-     set(ref(db, "users/" + uid){
-       billingAdd: billAddress.value,
-       firstName: fname.value,
-       lastName: lname.value,
-       cardNamber: cardNum.value,
-       cardDate: cardDate.value,
-       cvv: cvv.value,
-     })
-
-     .then(()=>{
-        alert("Payment Complete")
-     })
-    .catch((error) =>{
-         alert("fail " + error)
-     });
-   }
+        .then(()=>{
+           alert("Payment Complete")
+        })
+       .catch((error) =>{
+            alert("fail " + error)
+        });
+      })
 </script>
 
 
