@@ -44,7 +44,7 @@ p    {color: red;}
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="./premium-user/index.html">Back to homepage</a>
+          <a href="./free-user/index.html">Back to homepage</a>
         </li>
       </ul>
     </div>
@@ -72,10 +72,10 @@ p    {color: red;}
 
     <br>
 
-    <input type="checkbox" id="userAgree" name="userAgree" value="userAgree">
+    <input type="checkbox" id="userAgree" name="userAgree" value="userAgree" required>
     <label for="userAgree"> I understand that I have read and agreed to the Terms of Use and the Privacy Policy</label><br>
 
-    <button class ="button" id="completePaymentAnnually"> Complete Payment</button>
+    <button class ="submit" id="completePaymentAnnually"> Complete Payment</button>
 
   </div>
 
@@ -125,15 +125,30 @@ p    {color: red;}
         })
 
 
-
-        .then(()=>{
+        if(billAddress.value === '' || billAddress.value == 'null'){
+            alert("Billing address required")
+        }else if(fname.value === '' || fname.value == 'null'){
+            alert("First name required")
+        }else if(lname.value === '' || lname.value == 'null'){
+            alert("Last name required")
+        }else if(cardNum.value === '' || cardNum.value == 'null'){
+            alert("Card number required")
+        }else if(cardDate.value === '' || cardDate.value == 'null'){
+            alert("Card date required")
+        }else if(cvv.value === '' || cvv.value == 'null'){
+            alert("CVV required")
+        }else if(!userAgree.checked){
+            alert("Please agree to the terms and conditions")
+        }else{
+      //  .then(()=>{*/
            alert("Payment Complete")
-        })
-       .catch((error) =>{
-            alert("fail " + error)
-        });
+
+         }
+      //  })
+       //.catch((error) =>{
+      //      alert("fail " + error)
+      //  });
       })
-    
 
 </script>
 
