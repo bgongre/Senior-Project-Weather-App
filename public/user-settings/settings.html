@@ -56,7 +56,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="../premium-user/index.html">Back to homepage</a>
+          <a href="../free-user/index.html">Back to homepage</a>
           <a href="../premium.html">Go Premium</a>
         </li>
       </ul>
@@ -73,10 +73,10 @@
     <div class="form-container">
       <div class="double">
         <h2> First Name </h2>
-        <input type="name" id="FirstName" name="FirstName" placeholder="Enter first name">
+        <input type="name" id="FirstName" name="FirstName" placeholder="Enter first name" required>
 
         <h2> Last Name </h2>
-        <input type="name" id="LastName" name="LastName" placeholder="Enter last name">
+        <input type="name" id="LastName" name="LastName" placeholder="Enter last name" required>
 
         <div id="wrapper">
           <h2> Gender </h2>
@@ -87,19 +87,19 @@
         </div>
 
         <h2> Username </h2>
-        <input type="name" id="Username" name="Username" placeholder="Enter username"> <br>
+        <input type="name" id="Username" name="Username" placeholder="Enter username" required> <br>
 
         <!-- don't allow to change password at this time
           <h2> Password </h2>
           <input type="password" id="Password" name="Password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required><br>
           -->
         <h2> Date of birth </h2>
-        <input type="text" id="DateOfBirth" name="Date of Birth" placeholder="Enter birthdate"><br>
+        <input type="text" id="DateOfBirth" name="Date of Birth" placeholder="Enter birthdate" required><br>
 
       </div>
 
       <div id="button_container">
-        <button class="button" id="update">UPDATE</button>
+        <button class="submit" id="update">UPDATE</button>
       </div>
 
 
@@ -141,7 +141,7 @@
   var uname = document.getElementById('Username');
   var birth = document.getElementById('DateOfBirth');
 
-  
+
   document.getElementById("update").addEventListener("click",  function writeUserData() {
     set(ref(db, "users/"), {
         firstName: fname.value,
@@ -150,12 +150,29 @@
         birthDate: birth.value,
         premium: false,
     })
-    .then(()=>{
-      alert("data save")
-    })
-    .catch((error) =>{
-      alert("fail " + error)
-    });
+
+
+
+      if(fname.value === '' || fname.value == 'null'){
+        alert("First name required")
+      }else if(lname.value === '' || lname.value == 'null'){
+        alert("Last name required")
+      }else if(uname.value === '' || uname.value == 'null'){
+        alert("Username required")
+      }else if(birth.value === '' || birth.value == 'null'){
+        alert("Birth date required")
+      }else{
+
+      //.then(()=>{
+        alert("Your settings have been updated.")
+      //})
+      //.catch((error) =>{
+
+      //  alert("fail " + error)
+      //});
+    }
+
+
   })
 
 </script>
