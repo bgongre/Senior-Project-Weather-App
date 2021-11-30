@@ -1,3 +1,16 @@
+button.submit {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 h2 {
   background-color: lightgreen;
   width: 300px;
@@ -20,18 +33,7 @@ p {
   color: black;
 }
 
-.button {
-  background-color: red;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+
 
 .bg-light {
   margin-bottom: 50px;
