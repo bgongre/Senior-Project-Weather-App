@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="premiumSignUp.css">
+<link rel="stylesheet" href="premium.css">
 <script src="./firebase/firebase.js"></script>
 <script src="./premium.js"></script>
 
@@ -24,7 +24,7 @@ h1 {
   color: blue;
   margin-top: 50px;
 }
-p    {color: red;}
+p    {color: black;}
 
 </style>
 
@@ -77,6 +77,12 @@ p    {color: red;}
 
 <button class = "submit" id="completePaymentMonthly">Complete Payment</button>
 
+<br>
+
+<button type ="submit" id="premiumSiteRedirect"> Go to premium site</button>
+<p> Disclaimer: Note that the 'Go to Premium Site' button will only work once all the fields are submitted.</p>
+
+
 </div>
 </center>
 
@@ -126,28 +132,36 @@ p    {color: red;}
           cvv: cvv.value,
         })
 
+
         if(billAddress.value === '' || billAddress.value == 'null'){
-            alert("Billing address required")
+          alert("Please fill out all the fields before submitting.")
         }else if(fname.value === '' || fname.value == 'null'){
-            alert("First name required")
+          alert("Please fill out all the fields before submitting.")
         }else if(lname.value === '' || lname.value == 'null'){
-            alert("Last name required")
+          alert("Please fill out all the fields before submitting.")
         }else if(cardNum.value === '' || cardNum.value == 'null'){
-            alert("Card number required")
+          alert("Please fill out all the fields before submitting.")
         }else if(cardDate.value === '' || cardDate.value == 'null'){
-            alert("Card date required")
+          alert("Please fill out all the fields before submitting.")
         }else if(cvv.value === '' || cvv.value == 'null'){
-            alert("CVV required")
+          alert("Please fill out all the fields before submitting")
         }else if(!userAgree.checked){
-            alert("Please agree to the terms and conditions")
+          alert("Please agree to the terms and conditions.")
         }else{
-      //  .then(()=>{*/
-           alert("Payment Complete.")
-         }
-      //  })
-       //.catch((error) =>{
-      //      alert("fail " + error)
-      //  });
+              //  .then(()=>{*/
+                   alert("Payment Complete. Click the 'Go to premium site' button to proceed.")
+
+                     document.getElementById("premiumSiteRedirect")
+                   .addEventListener('click', () => {
+                      window.location.href = './premium-user/index.html';
+                    });
+
+                }
+
+              //  })
+               //.catch((error) =>{
+              //      alert("fail " + error)
+              //  });*/
       })
 </script>
 
