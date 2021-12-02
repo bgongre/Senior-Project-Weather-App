@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="premiumSignUp.css">
+<link rel="stylesheet" href="premium.css">
 <script src="./firebase/firebase.js"></script>
 <script src="./premium.js"></script>
 
@@ -76,9 +76,7 @@ p    {color: black;}
  <label for="userAgree"> I understand that I have read and agreed to the Terms of Use and the Privacy Policy</label><br>
 
 <button class = "submit" id="completePaymentMonthly">Complete Payment</button>
-
 <br>
-
 <button type ="submit" id="premiumSiteRedirect"> Go to premium site</button>
 <p> Disclaimer: Note that the 'Go to Premium Site' button will only work once all the fields are submitted.</p>
 
@@ -111,7 +109,6 @@ p    {color: black;}
   // Initialize Firebase
     const app = initializeApp(firebaseConfig);
 
-
 //Create variables to hold the basic credit card related elements the user wants to store to pay for the premium site - Abhay Kamath
  var billAddress = document.getElementById('billAddress');
  var fname = document.getElementById('firstName');
@@ -120,12 +117,12 @@ p    {color: black;}
  var cardDate = document.getElementById('cardDate');
  var cvv = document.getElementById('CVV');
 
-  let uid = firebase.auth.uid
+ let uid = firebase.auth.uid
 
-    
-     //Set those variables to Firebase Realtime Database - Abhay Kamath
-    document.getElementById("completePaymentAnnually").addEventListener("click", function writeUserData() {
-        const db = getDatabase();
+
+    //Set those variables to Firebase Realtime Database - Abhay Kamath
+    document.getElementById("completePaymentMonthly").addEventListener("click", function writeUserData() {
+      const db = getDatabase();
         set(ref(db, "users/"), {
           billingAdd: billAddress.value,
           firstName: fname.value,
@@ -137,35 +134,35 @@ p    {color: black;}
 
         //If the values are empty strings and/or null , throw an error. Otherwise throw a message saying the submission was successful. - Abhay Kamath
         if(billAddress.value === '' || billAddress.value == 'null'){
-            alert("Please fill out all the fields before submitting.")
+          alert("Please fill out all the fields before submitting.")
         }else if(fname.value === '' || fname.value == 'null'){
-            alert("Please fill out all the fields before submitting.")
+          alert("Please fill out all the fields before submitting.")
         }else if(lname.value === '' || lname.value == 'null'){
-            alert("Please fill out all the fields before submitting.")
+          alert("Please fill out all the fields before submitting.")
         }else if(cardNum.value === '' || cardNum.value == 'null'){
-            alert("Please fill out all the fields before submitting.")
+          alert("Please fill out all the fields before submitting.")
         }else if(cardDate.value === '' || cardDate.value == 'null'){
-            alert("Please fill out all the fields before submitting.")
+          alert("Please fill out all the fields before submitting.")
         }else if(cvv.value === '' || cvv.value == 'null'){
-            alert("Please fill out all the fields before submitting")
+          alert("Please fill out all the fields before submitting")
         }else if(!userAgree.checked){
-            alert("Please agree to the terms and conditions.")
+          alert("Please agree to the terms and conditions.")
         }else{
-      //  .then(()=>{*/
-           alert("Payment Complete. Click the 'Go to premium site' button to proceed.")
-          
-             //Redirect the user to premium site once all payment fields are submitted - Abhay Kamath
-             document.getElementById("premiumSiteRedirect")
-           .addEventListener('click', () => {
-              window.location.href = './premium-user/index.html';
-            });
+              //  .then(()=>{*/
+                   alert("Payment Complete. Click the 'Go to premium site' button to proceed.")
 
-        }
+                     //Redirect the user to premium site once all payment fields are submitted - Abhay Kamath
+                     document.getElementById("premiumSiteRedirect")
+                   .addEventListener('click', () => {
+                      window.location.href = './premium-user/index.html';
+                    });
 
-      //  })
-       //.catch((error) =>{
-      //      alert("fail " + error)
-      //  });*/
+                }
+
+              //  })
+               //.catch((error) =>{
+              //      alert("fail " + error)
+              //  });*/
       })
 </script>
 
