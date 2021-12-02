@@ -24,7 +24,7 @@
 </head>
 
 
-<!-- Background/Text styles Abhay Kamath-->
+<!-- Background/Text styles - Abhay Kamath-->
 <style>
   body {
     background-color: powderblue;
@@ -135,12 +135,14 @@
   let uid = firebase.auth.uid
   console.log('uid ', uid);
 
+    
+  //Create variables to hold the elements the user wants to store - Abhay Kamath
   var fname = document.getElementById('FirstName');
   var lname = document.getElementById('LastName');
   var uname = document.getElementById('Username');
   var birth = document.getElementById('DateOfBirth');
 
-
+  //Set those variables to Firebase Realtime Database - Abhay Kamath
   document.getElementById("update").addEventListener("click",  function writeUserData() {
     set(ref(db, "users/"), {
         firstName: fname.value,
@@ -149,6 +151,8 @@
         birthDate: birth.value,
         premium: true,
     })
+    
+    //If the values are empty strings and/or null , throw an error. Otherwise throw a message saying the submission was successful - Abhay Kamath
    if(fname.value === '' || fname.value == 'null'){
         alert("Please fill out all the fields before submitting.")
       }else if(lname.value === '' || lname.value == 'null'){
