@@ -1,7 +1,7 @@
 // FirebaseUI config.
 // https://firebase.google.com/docs/auth/web/firebaseui
 var uiConfig = {
-    signInSuccessUrl: '../free-user/index.html',
+    signInSuccessUrl: './free-user/index.html',
     signInOptions: [
       // no other login as of now
             //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
