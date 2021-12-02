@@ -16,7 +16,7 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
 </head>
 
 
-<!-- Background/Text styles Abhay Kamath-->
+<!-- Background/Text styles - Abhay Kamath-->
 <style>
 
 body {background-color: powderblue;}
@@ -50,7 +50,7 @@ p    {color: black;}
     </div>
   </nav>
 
-  <!--Create a sign up page for users to join premium version Abhay Kamath -->
+  <!--Create a sign up page for users to join premium version - Abhay Kamath -->
   <center>
     <h1> Billing </h1>
 <div class="double">
@@ -111,7 +111,7 @@ p    {color: black;}
   // Initialize Firebase
     const app = initializeApp(firebaseConfig);
 
-
+//Create variables to hold the basic credit card related elements the user wants to store to pay for the premium site - Abhay Kamath
  var billAddress = document.getElementById('billAddress');
  var fname = document.getElementById('firstName');
  var lname = document.getElementById('lastName');
@@ -120,9 +120,9 @@ p    {color: black;}
  var cvv = document.getElementById('CVV');
 
  let uid = firebase.auth.uid
-
-    document.getElementById("completePaymentMonthly").addEventListener("click", function writeUserData() {
-      const db = getDatabase();
+ //Set those variables to Firebase Realtime Database - Abhay Kamath
+    document.getElementById("completePaymentAnnually").addEventListener("click", function writeUserData() {
+        const db = getDatabase();
         set(ref(db, "users/"), {
           billingAdd: billAddress.value,
           firstName: fname.value,
@@ -132,36 +132,37 @@ p    {color: black;}
           cvv: cvv.value,
         })
 
-
+        //If the values are empty strings and/or null , throw an error. Otherwise throw a message saying the submission was successful. - Abhay Kamath
         if(billAddress.value === '' || billAddress.value == 'null'){
-          alert("Please fill out all the fields before submitting.")
+            alert("Please fill out all the fields before submitting.")
         }else if(fname.value === '' || fname.value == 'null'){
-          alert("Please fill out all the fields before submitting.")
+            alert("Please fill out all the fields before submitting.")
         }else if(lname.value === '' || lname.value == 'null'){
-          alert("Please fill out all the fields before submitting.")
+            alert("Please fill out all the fields before submitting.")
         }else if(cardNum.value === '' || cardNum.value == 'null'){
-          alert("Please fill out all the fields before submitting.")
+            alert("Please fill out all the fields before submitting.")
         }else if(cardDate.value === '' || cardDate.value == 'null'){
-          alert("Please fill out all the fields before submitting.")
+            alert("Please fill out all the fields before submitting.")
         }else if(cvv.value === '' || cvv.value == 'null'){
-          alert("Please fill out all the fields before submitting")
+            alert("Please fill out all the fields before submitting")
         }else if(!userAgree.checked){
-          alert("Please agree to the terms and conditions.")
+            alert("Please agree to the terms and conditions.")
         }else{
-              //  .then(()=>{*/
-                   alert("Payment Complete. Click the 'Go to premium site' button to proceed.")
+      //  .then(()=>{*/
+           alert("Payment Complete. Click the 'Go to premium site' button to proceed.")
+          
+             //Redirect the user to premium site once all payment fields are submitted - Abhay Kamath
+             document.getElementById("premiumSiteRedirect")
+           .addEventListener('click', () => {
+              window.location.href = './premium-user/index.html';
+            });
 
-                     document.getElementById("premiumSiteRedirect")
-                   .addEventListener('click', () => {
-                      window.location.href = './premium-user/index.html';
-                    });
+        }
 
-                }
-
-              //  })
-               //.catch((error) =>{
-              //      alert("fail " + error)
-              //  });*/
+      //  })
+       //.catch((error) =>{
+      //      alert("fail " + error)
+      //  });*/
       })
 </script>
 
