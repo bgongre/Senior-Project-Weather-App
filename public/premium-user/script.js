@@ -380,7 +380,7 @@ function initMap() {
 }
 
 // Animate the Weather Radar, each time is call increase the timesteamps i "Xiaodong Huang" reference "http://mesonet.agron.iastate.edu/ogc/?fbclid=IwAR2oWMf9JWquzs9hRzRNY-9U7HN_z5GXcCszBsKXtKjtm-8H3GMIXOJJ1gQ"
-function startAnimation(){
+function move(){
     tileNEX = new google.maps.ImageMapType({
       getTileUrl: function(tile, zoom) {
           return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-" + timestamps[i] + "/" + zoom + "/" + tile.x + "/" + tile.y +".png"; 
@@ -396,7 +396,7 @@ function startAnimation(){
       i = 0;
     }
 }
-radaranim = setInterval(startAnimation, 500); //call the function "Xiaodong Huang"  
+radaranim = setInterval(move, 500); //call the function "Xiaodong Huang"  
   //create empty overlay entery, if 0 set, if not 0 clear the tile "Xiaodong Huang" reference "http://mesonet.agron.iastate.edu/ogc/?fbclid=IwAR2oWMf9JWquzs9hRzRNY-9U7HN_z5GXcCszBsKXtKjtm-8H3GMIXOJJ1gQ"
   if(map.overlayMapTypes.length == 0){
         tileNEX = new google.maps.ImageMapType({
