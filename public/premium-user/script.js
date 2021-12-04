@@ -359,7 +359,7 @@ function foreDisplay(data, num) {
 var map;
 var i = 0;
 var radaranim;
-//Set up the innit time
+//Set up the innit time https://docs.microsoft.com/en-us/bingmaps/v8-web-control/map-control-concepts/layers/controlling-an-animatedtilelayer
 var timestamps = ['900913-m50m', '900913-m45m', '900913-m40m', '900913-m35m', '900913-m30m', '900913-m25m', 
     '900913-m20m', '900913-m15m', '900913-m10m', '900913-m05m', '900913'];
 
@@ -401,7 +401,6 @@ radaranim = setInterval(startAnimation, 500); //call the function "Xiaodong Huan
   if(map.overlayMapTypes.length == 0){
         tileNEX = new google.maps.ImageMapType({
           getTileUrl: function(tile, zoom) {
-            debugger;
               return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-" + timestamps[i] + "/" + zoom + "/" + tile.x + "/" + tile.y +".png"; 
           },
           tileSize: new google.maps.Size(256, 256),
