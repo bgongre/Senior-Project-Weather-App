@@ -100,6 +100,10 @@
 
       <div id="button_container">
         <button class="submit" id="update">UPDATE</button>
+
+        <br>
+
+        <button class="button" id="view" onclick="getData()">View your updated settings</button>
       </div>
 
 
@@ -135,24 +139,27 @@
   const db = getDatabase();
   let uid = firebase.auth.uid
   console.log('uid ', uid);
-  
+
+
    //Create variables to hold the elements the user wants to store - Abhay Kamath
   var fname = document.getElementById('FirstName');
   var lname = document.getElementById('LastName');
+  var gender = document.getElementById('wrapper')
   var uname = document.getElementById('Username');
   var birth = document.getElementById('DateOfBirth');
 
   //Set those variables to Firebase Realtime Database - Abhay Kamath
-  document.getElementById("update").addEventListener("click",  function writeUserData() {
+  document.getElementById("update").addEventListener("click", function writeUserData() {
     set(ref(db, "users/"), {
         firstName: fname.value,
         lastName: lname.value,
+        gender: gender,
         username: uname.value,
         birthDate: birth.value,
         premium: false,
     })
 
-     
+
       //If the values are empty strings and/or null , throw an error. Otherwise throw a message saying the submission was successful - Abhay Kamath
       if(fname.value === '' || fname.value == 'null'){
         alert("Please fill out all the fields before submitting.")
@@ -166,12 +173,29 @@
 
       //.then(()=>{
         alert("Your settings have been updated.")
+
+
+
       //})
       //.catch((error) =>{
 
       //  alert("fail " + error)
       //});
-    }
+    //}
+
+  }
+
+
+//Display updated settings to the user - Abhay Kamath
+  document.getElementById("view")
+ .addEventListener('click', () => {
+  var userData = database.ref("users/")
+  userData.on('value', function(snapshot) {
+    var data = snapshot.val()
+    alert("First name: " +data.firstName+ "\nLast name: " +data.lastName+ "\nUsername: " +data.username+ "\nDate of Birth: " +data.birthDate+ "\nPremium Status: " +data.premium)
+
+  })
+ });
 
 
   })
