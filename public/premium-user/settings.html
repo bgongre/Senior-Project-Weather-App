@@ -68,7 +68,7 @@
     <h1> User Account Settings </h1>
 
 
-
+    <!-- Updated attributes name, placeholder, and type. -Brittani Gongre-  -->
     <div class="form-container">
       <div class="double">
         <h2> First Name </h2>
@@ -148,6 +148,7 @@
   var birth = document.getElementById('DateOfBirth');
 
   //Set those variables to Firebase Realtime Database - Abhay Kamath
+  // Updated the object key names to be meaningful. -Brittani Gongre-
   document.getElementById("update").addEventListener("click",  function writeUserData() {
     set(ref(db, "users/"), {
         firstName: fname.value,

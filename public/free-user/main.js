@@ -4,6 +4,7 @@ var mainContainer = document.getElementById("main_container");
 
     var logout =  function(){
       //logout function, once log out then go to login.html  "Xiaodong Huang"
+      // Fixed typos and removed console logs that were left behind and no longer needed -Britani Gongre
         firebase.auth().signOut().then(function(){
             window.location.replace("../index.html");
         },function(){})

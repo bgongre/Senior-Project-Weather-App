@@ -2,7 +2,7 @@
 var x = document.getElementById("lat");
 var y = document.getElementById("long");
 
-// forecast display elements
+// forecast display elements -Brittani Gongre-
 let cityName = document.getElementsByClassName("cityName");
 let weatherIcon = document.getElementsByClassName("icon");
 let weatherDescription = document.getElementsByClassName("description");
@@ -41,6 +41,8 @@ function getLocation() {
   }
 }
 
+// Refactored so that when the geolocation gets the current position the 
+// latitude and longitude can be retrieved and displayed in the console. -Brittani Gongre-
 function showPosition(position) {
   lat = position.coords.latitude;
   long = position.coords.longitude;
@@ -55,20 +57,23 @@ window.onload = function () {
 
 //getting the value user search "Xiaodong Huang"
 // added 'attributeName' to help make this function dynamic.
-// 'attributeName' is updated when a new weather location is added and allows for a new location to be searched -Brittani Gongre-
+// 'attributeName' is updated when a new weather location is added and allows for 
+// a new location to be searched -Brittani Gongre-
 function search() {
   weather.fetchWeather(document.getElementsByClassName(attributeName)[0].value);
 }
 
 //add eventlistener, onclick to the button get the value user input. "Xiaodong Huang"
-// same as above, edited this function to be dynamic for when new weather information is added -Brittani Gongre-
+// same as above, edited this function to be dynamic for when new weather information 
+// is added -Brittani Gongre-
 document.querySelector(".search").addEventListener("click", function () {
   search(attributeName);
   removefore();
 });
 
 //when user press enter call the search function.  "Xiaodong Huang"
-// same as above, edited this function to be dynamic for when new weather information is added -Brittani Gongre-
+// same as above, edited this function to be dynamic for when new weather information 
+// is added -Brittani Gongre-
 document.querySelector(`.${attributeName}`).addEventListener("keyup", function (event) {
   if (event.key == "Enter") {
     search(attributeName);
@@ -128,7 +133,8 @@ let Geoweather = {
 };
 
 //once we have the data from api, get the data and put it in html  "Xiaodong Huang"
-// refactored below to have all DOM selectors appear at top of the page for easy readability and reuse -Brittani Gongre-
+// refactored below to have all DOM selectors appear at top of the page for easy readability 
+// and reuse -Brittani Gongre-
 let flat;
 let flon;
 let cname;
@@ -334,6 +340,8 @@ function foreDisplay(data, num) {
       let humidity = value.humidity;
       let wind = value.wind_speed;
       // let visibility = value. **can't find this in the json**
+      // Added additional attributed in the "card-body" div such as minTemp, humidity, wind,
+      // sunrise and sunset. 
       let fday = `<div id="days" class="col">
       <div class="card mx-auto">
         <div class="weekday-name">${dayname}</div>
