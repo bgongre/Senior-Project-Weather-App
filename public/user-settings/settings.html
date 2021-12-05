@@ -182,20 +182,22 @@
       //  alert("fail " + error)
       //});
     //}
+      
+      //Display updated settings to the user - Abhay Kamath
+      document.getElementById("view")
+     .addEventListener('click', () => {
+      var userData = database.ref("users/")
+      userData.on('value', function(snapshot) {
+        var data = snapshot.val()
+      alert("First name: " +data.firstName+ "\nLast name: " +data.lastName+ "\nUsername: " +data.username+ "\nDate of Birth: " +data.birthDate+ "\nPremium Status: " +data.premium);
+
+      })
+    });
 
   }
 
 
-//Display updated settings to the user - Abhay Kamath
-  document.getElementById("view")
- .addEventListener('click', () => {
-  var userData = database.ref("users/")
-  userData.on('value', function(snapshot) {
-    var data = snapshot.val()
-    alert("First name: " +data.firstName+ "\nLast name: " +data.lastName+ "\nUsername: " +data.username+ "\nDate of Birth: " +data.birthDate+ "\nPremium Status: " +data.premium)
 
-  })
- });
 
 
   })
